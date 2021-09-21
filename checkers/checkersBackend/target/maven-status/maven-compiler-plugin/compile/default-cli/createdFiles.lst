@@ -1,7 +1,0 @@
-checkers\checkers\services\UserService.class
-checkers\checkers\authentication\Test.class
-checkers\checkers\controllers\UserController.class
-checkers\checkers\models\User.class
-checkers\checkers\CheckersApplication.class
-checkers\checkers\repository\UserRepository.class
-checkers\checkers\logic\UserLogic.class
