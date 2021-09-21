@@ -1,4 +1,4 @@
 package checkers.checkers.controllers;
 
-public class userController {
+public class UserController {
 }

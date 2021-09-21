@@ -1,4 +1,4 @@
 package checkers.checkers.repository;
 
-public class userRepository {
+public class UserRepository {
 }
