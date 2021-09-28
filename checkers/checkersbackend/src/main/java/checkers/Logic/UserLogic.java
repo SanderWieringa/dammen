@@ -2,9 +2,18 @@ package checkers.Logic;
 
 import checkers.Model.User;
 import checkers.Repository.UserRepository;
+import checkers.Response.AuthenticationRequest;
+import checkers.Util.PasswordHasher;
+import checkers.Util.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.AccessDeniedException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,5 +39,42 @@ public class UserLogic {
 
     public void deleteUser(int id){
         repository.deleteById(id);
+    }
+
+    public void addUser(User user) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        if (repository.findByUsername(user.getUsername()) != null) {
+            return;
+        }
+
+        String hashedPassword = PasswordHasher.generateStrongPasswordHash(user.getPassword());
+        user.setPassword(hashedPassword);
+        repository.save(user);
+    }
+
+    public User login(AuthenticationRequest authenticationRequest) throws InvalidKeySpecException, NoSuchAlgorithmException, AccessDeniedException {
+        User user = new User();
+        User userToCheck = repository.findByUsername(authenticationRequest.getUsername());
+        if (userToCheck != null) {
+            if (PasswordValidator.validatePassword(authenticationRequest.getPassword(), userToCheck.getPassword())) {
+                user.setUsername(authenticationRequest.getUsername());
+                user.setPassword(authenticationRequest.getPassword());
+                return user;
+            }
+        }
+
+        throw new AccessDeniedException("Access Denied!");
+    }
+
+    //@Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User userToConvert = repository.findByUsername((username));
+        if (userToConvert != null) {
+            return new org.springframework.security.core.userdetails.User(
+                    userToConvert
+                        .getUsername(), userToConvert
+                        .getPassword(), new ArrayList<>());
+        }
+
+        return null;
     }
 }
