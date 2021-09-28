@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @CrossOrigin("http://localhost:3000/")
-    @PostMapping(value = "/")
+    @PostMapping(value = "/register")
     public ResponseEntity<AuthenticationResponse> addUser(@RequestBody User user) {
         try {
             userLogic.addUser(user);

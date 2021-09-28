@@ -9,7 +9,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axios.post(`https://localhost:8080/register`, { userinfo })
+    axios.post(`http://localhost:8080/register`, { userinfo })
       .then(res => {
         console.log(res);
         console.log(res.data);
