@@ -1,25 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import {Login} from "./components/login";
+import "./App.css";
 
-function App() {
+export const App = () => {
+  const [userInfo, setUserInfo] = useState({  username: "", password: ""  });;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Damn son
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Login userinfo={userInfo} setUserInfo={setUserInfo} />
     </div>
   );
-}
-
-export default App;
+};

@@ -28,8 +28,8 @@ public class UserController {
         return "hoi";
     }
 
-    @CrossOrigin(origins = "http://localhost:3000/")
-    @PostMapping(value = "/register")
+    @CrossOrigin("http://localhost:3000/")
+    @PostMapping(value = "/")
     public ResponseEntity<AuthenticationResponse> addUser(@RequestBody User user) {
         try {
             userLogic.addUser(user);
