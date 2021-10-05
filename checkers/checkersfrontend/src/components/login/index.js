@@ -1,29 +1,25 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 import "./styles.scss";
 
 export const Login = ({ userinfo, setUserInfo }) => {
-    const inputChange = (e) => {
-      setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
+  const inputChange = (e) => {
+    setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
   const submit = (e) => {
     e.preventDefault();
 
-    axios.post(`http://localhost:8080/register`, { userinfo })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
-    
+    axios.post(`http://localhost:8080/register`, { userinfo }).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
 
     console.log(userinfo);
   };
 
-  
-  
   return (
     <div className="body">
-      <form className="form" onSubmit={(e) => submit(e) }>
+      <form className="form" onSubmit={(e) => submit(e)}>
         <h1 className="login-title">Login</h1>
         <input
           name="username"
@@ -45,7 +41,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
         <p className="p">Lost your password?</p>
       </form>
       <div className="register">
-        Don't have an account? <u>Sign up here!</u>
+        Don't have an account? <a href="/register">Sign up!</a>
       </div>
     </div>
   );
