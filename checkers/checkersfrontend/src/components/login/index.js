@@ -1,4 +1,6 @@
 import React from "react";
+import history from "../../history";
+import auth from "../../util/auth";
 import "./styles.scss";
 
 export const Login = ({ userinfo, setUserInfo }) => {
@@ -10,7 +12,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },    
       mode: 'cors',
       body: JSON.stringify(userinfo),
     };
@@ -20,6 +22,9 @@ export const Login = ({ userinfo, setUserInfo }) => {
     .then(function(data) {
         if(data.jwt) {
             localStorage.setItem('jwtToken', data.jwt)
+            auth.login(() => {
+              history.push("/home")
+          })
         }
     }).catch(function(error) {
         console.log(error)
