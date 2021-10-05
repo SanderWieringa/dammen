@@ -1,9 +1,10 @@
 import React from "react";
-import history from "../../history";
 import auth from "../../util/auth";
 import "./styles.scss";
+import { useHistory } from "react-router-dom"
 
 export const Login = ({ userinfo, setUserInfo }) => {
+  let history = useHistory();
   const inputChange = (e) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };

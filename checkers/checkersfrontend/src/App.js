@@ -4,7 +4,7 @@ import { Signup } from "./components/signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import { Home } from "./components/home";
+import { home } from "./components/home";
 import { ProtectedRoute } from "./util/protectedRoute";
 
 export const App = () => {
@@ -25,7 +25,7 @@ export const App = () => {
           <Route exact path="/register">
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
-          <ProtectedRoute exact path="/home" component={Home} />
+          <ProtectedRoute exact path="/home" component={home} />
         </Switch>
       </Router>
     </div>
