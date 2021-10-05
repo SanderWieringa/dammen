@@ -9,14 +9,22 @@ export const Login = ({ userinfo, setUserInfo }) => {
   const submit = (e) => {
     e.preventDefault();
 
-    axios.post(`http://localhost:8080/register`, { userinfo })
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      mode: 'cors',
+      body: JSON.stringify(userinfo),
+    };
+
+    fetch('http://localhost:8080/authenticate', requestOptions)
       .then(res => {
         console.log(res);
         console.log(res.data);
       })
     
 
-    console.log(userinfo);
+    console.log(requestOptions.body);
+    console.log(userData);
   };
 
   

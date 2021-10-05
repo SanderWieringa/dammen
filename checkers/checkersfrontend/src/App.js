@@ -6,7 +6,7 @@ export const App = () => {
   const [userInfo, setUserInfo] = useState({  username: "", password: ""  });;
   return (
     <div className="container">
-      <Login userinfo={userInfo} setUserInfo={setUserInfo} />
+      <Login exact path="/" userinfo={userInfo} setUserInfo={setUserInfo} />
     </div>
   );
 };
