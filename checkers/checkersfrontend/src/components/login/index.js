@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import "./styles.scss";
 
 export const Login = ({ userinfo, setUserInfo }) => {
@@ -17,14 +16,15 @@ export const Login = ({ userinfo, setUserInfo }) => {
     };
 
     fetch('http://localhost:8080/authenticate', requestOptions)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+    .then(function(response){return response.json();})
+    .then(function(data) {
+        if(data.jwt) {
+            localStorage.setItem('jwtToken', data.jwt)
+        }
+    }).catch(function(error) {
+        console.log(error)
+    })
     
-
-    console.log(requestOptions.body);
-    console.log(userData);
   };
 
   return (
