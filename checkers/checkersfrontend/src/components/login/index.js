@@ -24,7 +24,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
         if(data.jwt) {
             localStorage.setItem('jwtToken', data.jwt)
             auth.login(() => {
-              history.push("/home")
+              history.push("/")
           })
         }
     }).catch(function(error) {
