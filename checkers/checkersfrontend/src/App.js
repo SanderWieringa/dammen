@@ -4,8 +4,8 @@ import { Signup } from "./components/signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import { home } from "./components/home";
 import { ProtectedRoute } from "./util/protectedRoute";
+import { NewHome } from "./components/newBoard";
 
 export const App = () => {
   const [userInfo, setUserInfo] = useState({
@@ -25,7 +25,7 @@ export const App = () => {
           <Route exact path="/register">
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
-          <ProtectedRoute exact path="/home" component={home} />
+          <ProtectedRoute exact path="/home" component={NewHome} />
         </Switch>
       </Router>
     </div>
