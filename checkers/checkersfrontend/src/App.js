@@ -18,8 +18,7 @@ export const App = () => {
     <div className="container">
       <Router>
         <Switch>
-        <Route exact path="/" component={CheckersBoard}>
-          </Route>
+          <Route exact path="/" component={Login}></Route>
           <Route exact path="/login">
             <Login userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
