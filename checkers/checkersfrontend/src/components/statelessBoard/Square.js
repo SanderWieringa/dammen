@@ -1,5 +1,6 @@
 import React from "react";
 import { Piece } from "./Piece";
+import "./styles.scss";
 
 export const Square = (props) => {
     const isEvenRow = (props.row % 2 === 0)

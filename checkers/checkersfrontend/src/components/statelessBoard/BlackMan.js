@@ -1,5 +1,6 @@
 import React from "react";
 import blackMan from '../../black-man.svg'
+import "./styles.scss";
 
 export const Blackman = () => {
     

@@ -12,5 +12,23 @@
 }
 
 .dark {
+  align-items: center;
+  align-self: center;
   background-color: #d18b47;
+}
+
+img.piece {
+  align-self: center;
+}
+
+td.square.dark {
+  align-items: center;
+}
+
+circle {
+  align-self: center;
+}
+
+svg {
+  align-self: center;
 }
