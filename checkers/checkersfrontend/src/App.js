@@ -24,7 +24,7 @@ export const App = () => {
     <div className="container">
       <Router>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/login">
             <Login userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
           <Route exact path="/register">
