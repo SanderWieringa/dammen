@@ -10,6 +10,7 @@ import checkers.socketModel.ChatMessage;
 
 @Controller
 public class ChatController {
+    
     @MessageMapping("/chat/send")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload final ChatMessage chatMessage){
