@@ -1,4 +1,4 @@
-package checkers.Model;
+package checkers.model;
 
 public class Piece {
     private boolean isKing;

@@ -1,6 +1,6 @@
-package checkers.Filter;
+package checkers.filter;
 
-import checkers.Util.JwtUtil;
+import checkers.util.JwtUtil;
 import checkers.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

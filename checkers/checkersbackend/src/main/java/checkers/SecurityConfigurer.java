@@ -1,6 +1,6 @@
 package checkers;
 
-import checkers.Filter.JwtRequestFilters;
+import checkers.filter.JwtRequestFilters;
 import checkers.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,8 +35,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/account/authenticate").permitAll()
+                .antMatchers("/account/register").permitAll()
                 .antMatchers("/hi").permitAll()
                 .anyRequest()
                 .authenticated()

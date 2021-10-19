@@ -1,4 +1,4 @@
-package checkers.Response;
+package checkers.response;
 
 public class AuthenticationResponse {
     private final String jwt;

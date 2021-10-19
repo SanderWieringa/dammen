@@ -1,4 +1,4 @@
-package checkers.Model;
+package checkers.model;
 
 import java.util.ArrayList;
 

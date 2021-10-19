@@ -1,8 +1,7 @@
 package checkers.services;
 
-import checkers.Model.User;
-import checkers.Repository.UserRepository;
-import org.apache.el.stream.Optional;
+import checkers.model.User;
+import checkers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
