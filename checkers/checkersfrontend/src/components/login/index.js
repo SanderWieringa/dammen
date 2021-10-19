@@ -1,7 +1,10 @@
 import React from "react";
+import auth from "../../util/auth";
 import "./styles.scss";
+import { useHistory } from "react-router-dom"
 
 export const Login = ({ userinfo, setUserInfo }) => {
+  let history = useHistory();
   const inputChange = (e) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
@@ -10,7 +13,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
 
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },    
       mode: 'cors',
       body: JSON.stringify(userinfo),
     };
@@ -20,6 +23,9 @@ export const Login = ({ userinfo, setUserInfo }) => {
     .then(function(data) {
         if(data.jwt) {
             localStorage.setItem('jwtToken', data.jwt)
+            auth.login(() => {
+              history.push("/home")
+          })
         }
     }).catch(function(error) {
         console.log(error)
