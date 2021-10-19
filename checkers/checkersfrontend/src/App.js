@@ -24,7 +24,7 @@ export const App = () => {
           <Route exact path="/register">
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
-          <Route exact path="/home" component={CheckersBoard}/>
+          <Route exact path="/" component={CheckersBoard} />
         </Switch>
       </Router>
     </div>
