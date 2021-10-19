@@ -2,33 +2,21 @@
   border-collapse: collapse;
 }
 
-.square {
-  width: 83px;
-  height: 83px;
-}
-
-.light {
+.square-light {
   background-color: #ffce9e;
+  width: 66px;
+  height: 66px;
 }
 
-.dark {
-  align-items: center;
-  align-self: center;
+.square-dark {
   background-color: #d18b47;
+  min-width: 65px;
+  min-height: 65px;
 }
 
 img.piece {
-  align-self: center;
-}
-
-td.square.dark {
-  align-items: center;
-}
-
-circle {
-  align-self: center;
-}
-
-svg {
-  align-self: center;
+  margin: auto;
+  display: block;
+  height: 3.5rem;
+  width: 3.5rem;
 }
