@@ -1,4 +1,4 @@
-package checkers.Model;
+package checkers.model;
 
 public class Cell {
     private State state;

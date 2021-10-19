@@ -1,6 +1,6 @@
 package checkers;
 
-import checkers.Filter.JwtRequestFilters;
+import checkers.filter.JwtRequestFilters;
 import checkers.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

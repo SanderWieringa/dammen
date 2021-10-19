@@ -1,4 +1,4 @@
-package checkers.Response;
+package checkers.response;
 
 public class AuthenticationRequest {
     private String username;

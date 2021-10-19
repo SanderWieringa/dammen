@@ -1,8 +1,8 @@
-package checkers.Logic;
+package checkers.logic;
 
-import checkers.Model.Board;
-import checkers.Model.User;
-import checkers.Repository.UserRepository;
+import checkers.model.Board;
+import checkers.model.User;
+import checkers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Game {

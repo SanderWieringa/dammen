@@ -1,10 +1,10 @@
 package checkers.controllers;
 
-import checkers.Logic.UserLogic;
-import checkers.Model.User;
-import checkers.Response.AuthenticationRequest;
-import checkers.Response.AuthenticationResponse;
-import checkers.Util.JwtUtil;
+import checkers.logic.UserLogic;
+import checkers.model.User;
+import checkers.response.AuthenticationRequest;
+import checkers.response.AuthenticationResponse;
+import checkers.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package checkers.Model;
+package checkers.model;
 
 public enum State {
     EMPTY,

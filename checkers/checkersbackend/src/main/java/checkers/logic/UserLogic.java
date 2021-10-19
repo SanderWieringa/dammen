@@ -1,10 +1,10 @@
-package checkers.Logic;
+package checkers.logic;
 
-import checkers.Model.User;
-import checkers.Repository.UserRepository;
-import checkers.Response.AuthenticationRequest;
-import checkers.Util.PasswordHasher;
-import checkers.Util.PasswordValidator;
+import checkers.model.User;
+import checkers.repository.UserRepository;
+import checkers.response.AuthenticationRequest;
+import checkers.util.PasswordHasher;
+import checkers.util.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
