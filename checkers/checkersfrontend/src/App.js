@@ -7,12 +7,6 @@ import "./App.css";
 import { CheckersBoard } from "./components/statelessBoard";
 
 export const App = () => {
-  const express = require('express');
-  const app = express();
-  const http = require('http');
-  const server = http.createServer(app);
-  const { Server } = require("socket.io");
-  const io = new Server(server);
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",

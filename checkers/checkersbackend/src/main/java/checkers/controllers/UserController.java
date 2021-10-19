@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.nio.file.AccessDeniedException;
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/account")
 @RestController
 public class UserController {

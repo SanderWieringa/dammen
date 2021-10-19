@@ -18,7 +18,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
       body: JSON.stringify(userinfo),
     };
 
-    fetch('http://localhost:8080/authenticate', requestOptions)
+    fetch('http://localhost:8080/account/authenticate', requestOptions)
     .then(function(response){return response.json();})
     .then(function(data) {
         if(data.jwt) {
