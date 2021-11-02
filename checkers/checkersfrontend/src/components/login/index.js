@@ -22,7 +22,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
     .then(function(response){return response.json();})
     .then(function(data) {
         if(data.jwt) {
-            localStorage.setItem('jwtToken', data.jwt)
+            sessionStorage.setItem('jwtToken', data.jwt)
             auth.login(() => {
               history.push("/home")
           })
