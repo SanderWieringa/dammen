@@ -8,7 +8,7 @@ public class ChatMessage {
     @Getter
     private MessageType type;
     @Getter
-    private String conten;
+    private String content;
     @Getter
     private String sender;
     @Getter

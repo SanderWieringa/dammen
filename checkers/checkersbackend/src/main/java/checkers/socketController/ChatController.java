@@ -7,21 +7,20 @@ import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
 import checkers.socketModel.ChatMessage;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 public class ChatController {
-    
-    @MessageMapping("/chat/send")
+    @MessageMapping("/chat.send")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload final ChatMessage chatMessage){
+    public ChatMessage sendMessage(@Payload final ChatMessage chatMessage) {
         return chatMessage;
     }
 
     @MessageMapping("/chat.newUser")
     @SendTo("/topic/public")
-    public ChatMessage newUser(@Payload final ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor){
+    public ChatMessage newUser(@Payload final ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
-
 }
