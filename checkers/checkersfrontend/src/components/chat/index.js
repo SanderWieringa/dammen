@@ -26,13 +26,10 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
       //ToDo:
 
-      //const socket = new SockJS("http://localhost:8080/chat-example");
-      //http://uat.wealthbrain.com:7777/gs-guide-websocket
-      const socket = new SockJS("/chat-example");
+      const socket = new WebSocket("ws://localhost:8080/chat-example");
+
       console.log("here 8");
-      //const socket = new SockJS("http://localhost:35729");
-      //const socket = new WebSocket("ws://localhost:35729/");
-      //const socket = new SockJS("/chat-example");
+
       stompClient = Stomp.over(socket);
       console.log("here 9");
       stompClient.connect({}, onConnected, onError);
@@ -43,7 +40,7 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
   const onConnected = () => {
     console.log("here 4");
-    stompClient.subscribe("/topic/public", onMessageReceived);
+    stompClient.subscribe("/app/topic", onMessageReceived);
     console.log("here 5");
     stompClient.send(
       "/app/chat.newUser",

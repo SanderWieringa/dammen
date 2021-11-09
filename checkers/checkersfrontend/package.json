@@ -16,6 +16,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.1",
+    "react-spring-websocket": "^1.0.3",
     "sans": "^1.0.0",
     "sass": "^1.42.1",
     "socket.io": "^4.2.0",
