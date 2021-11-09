@@ -1,4 +1,3 @@
-import * as SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import "./styles.scss";
 import React from "react";
