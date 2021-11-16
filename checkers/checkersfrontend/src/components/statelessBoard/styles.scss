@@ -3,13 +3,13 @@
 }
 
 .square-light {
-  background-color: #ffce9e;
+  background: #fafafa;
   width: 66px;
   height: 66px;
 }
 
 .square-dark {
-  background-color: #d18b47;
+  background: #822f30;
   min-width: 65px;
   min-height: 65px;
 }
@@ -19,4 +19,13 @@ img.piece {
   display: block;
   height: 3.5rem;
   width: 3.5rem;
+}
+
+.white {
+  border-radius: 50%;
+  background-color: #d78637;
+}
+
+.black {
+  border-radius: 1.5px;
 }

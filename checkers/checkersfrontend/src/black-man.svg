@@ -5,5 +5,5 @@
     xmlns="http://www.w3.org/2000/svg" 
     xmlns:xlink="http://www.w3.org/1999/xlink">
         <title>Checkers black man</title>
-        <circle id="man" cx="0" cy="0" r="32" stroke="none" fill="#000" />
+        <circle id="man" cx="0" cy="0" r="32" stroke="none" fill="#36261B" />
 </svg>
