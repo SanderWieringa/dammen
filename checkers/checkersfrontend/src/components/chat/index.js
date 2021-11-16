@@ -1,6 +1,7 @@
 import Stomp from "stompjs";
 import "./styles.scss";
 import React from "react";
+import { mockComponent } from "react-dom/test-utils";
 
 export const Chat = ({ userinfo, setUserInfo }) => {
   const inputChange = (e) => {
@@ -39,15 +40,16 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
   const onConnected = () => {
     console.log("here 4");
-    stompClient.subscribe("/app/topic", onMessageReceived);
+    stompClient.subscribe("/topic/public", onMessageReceived);
     console.log("here 5");
     stompClient.send(
       "/app/chat.newUser",
       {},
-      JSON.stringify({ sender: username, type: "CONNECT" })
+      JSON.stringify({ sender: username.value, type: "CONNECT" })
     );
+    alert("here 6");
     console.log("here 6");
-    const status = document.querySelector("#status");
+    const status = document.getElementById("status");
     status.className = "hide";
   };
 
@@ -57,6 +59,29 @@ export const Chat = ({ userinfo, setUserInfo }) => {
     status.innerHTML =
       "Could not find the connection you were looking for. Move along. Or, Refresh the page!";
     status.style.color = "red";
+  };
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+    alert("here 15");
+    console.log("here 15");
+
+    const messageInput = document.getElementById("message");
+    console.log("messageInput: ", messageInput);
+    const messageContent = messageInput.value.trim();
+
+    console.log("messageContent: ", messageContent);
+    if (messageContent && stompClient) {
+      console.log("here 16");
+      const chatMessage = {
+        sender: username,
+        content: messageInput.value,
+        type: "CHAT",
+        time: mockComponent().calendar(),
+      };
+      stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+      messageInput.value = "";
+    }
   };
 
   const hashCode = (str) => {
@@ -73,15 +98,24 @@ export const Chat = ({ userinfo, setUserInfo }) => {
     return colours[index];
   };
 
+  const loginForm = document.createElement("login-form");
+  loginForm.addEventListener("submit", connect, true);
+  const messageControls = document.createElement("message-controls");
+  messageControls.addEventListener("submit", sendMessage, true);
+
   const onMessageReceived = (payload) => {
+    console.log("here 11");
     const message = JSON.parse(payload.body);
 
+    console.log("here 12");
     const chatCard = document.createElement("div");
     chatCard.className = "card-body";
 
+    console.log("here 13");
     const flexBox = document.createElement("div");
     flexBox.className = "d-flex justify-content-end mb-4";
     chatCard.appendChild(flexBox);
+    console.log("here 14");
 
     const messageElement = document.createElement("div");
     messageElement.className = "msg_container_send";
@@ -174,6 +208,7 @@ export const Chat = ({ userinfo, setUserInfo }) => {
                     id="message-controls"
                     name="message-controls"
                     className="card-footer"
+                    onSubmit={(e) => sendMessage(e)}
                   >
                     <div className="input-group">
                       <textarea

@@ -9,7 +9,7 @@
 }
 
 .square-dark {
-  background-color: #d18b47;
+  background-color: #5d432c;
   min-width: 65px;
   min-height: 65px;
 }
@@ -19,4 +19,8 @@ img.piece {
   display: block;
   height: 3.5rem;
   width: 3.5rem;
+}
+
+th {
+  color: white;
 }

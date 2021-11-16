@@ -24,7 +24,7 @@ public class WebSocketEventListener {
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionConnectedEvent event) {
-        LOGGER.info("asdf");
+        LOGGER.info("Your boi");
     }
 
     @EventListener
@@ -40,6 +40,4 @@ public class WebSocketEventListener {
 
         sendingOperations.convertAndSend("/topic/public", chatMessage);
     }
-
-
 }
