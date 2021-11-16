@@ -11,13 +11,10 @@ export const Chat = ({ userinfo, setUserInfo }) => {
   let username;
   const connect = (e) => {
     e.preventDefault();
-    console.log("here 1");
 
     username = document.getElementById("username");
-    console.log(username.value);
 
     if (username) {
-      console.log("here 2");
       const login = document.getElementById("login");
       login.classList.add("hide");
 
@@ -28,33 +25,23 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
       const socket = new WebSocket("ws://localhost:8080/chat-example");
 
-      console.log("here 8");
-
       stompClient = Stomp.over(socket);
-      console.log("here 9");
       stompClient.connect({}, onConnected, onError);
-      console.log("here 10");
     }
-    console.log("here 3");
   };
 
   const onConnected = () => {
-    console.log("here 4");
     stompClient.subscribe("/topic/public", onMessageReceived);
-    console.log("here 5");
     stompClient.send(
       "/app/chat.newUser",
       {},
       JSON.stringify({ sender: username.value, type: "CONNECT" })
     );
-    alert("here 6");
-    console.log("here 6");
     const status = document.getElementById("status");
     status.className = "hide";
   };
 
   const onError = (error) => {
-    console.log("here 7");
     const status = document.querySelector("#status");
     status.innerHTML =
       "Could not find the connection you were looking for. Move along. Or, Refresh the page!";
@@ -63,21 +50,16 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    alert("here 15");
-    console.log("here 15");
 
     const messageInput = document.getElementById("message");
-    console.log("messageInput: ", messageInput);
     const messageContent = messageInput.value.trim();
 
-    console.log("messageContent: ", messageContent);
     if (messageContent && stompClient) {
-      console.log("here 16");
       const chatMessage = {
-        sender: username,
+        sender: username.value,
         content: messageInput.value,
         type: "CHAT",
-        time: mockComponent().calendar(),
+        time: Date().toLocaleString(),
       };
       stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
       messageInput.value = "";
@@ -104,18 +86,14 @@ export const Chat = ({ userinfo, setUserInfo }) => {
   messageControls.addEventListener("submit", sendMessage, true);
 
   const onMessageReceived = (payload) => {
-    console.log("here 11");
     const message = JSON.parse(payload.body);
 
-    console.log("here 12");
     const chatCard = document.createElement("div");
     chatCard.className = "card-body";
 
-    console.log("here 13");
     const flexBox = document.createElement("div");
     flexBox.className = "d-flex justify-content-end mb-4";
     chatCard.appendChild(flexBox);
-    console.log("here 14");
 
     const messageElement = document.createElement("div");
     messageElement.className = "msg_container_send";
