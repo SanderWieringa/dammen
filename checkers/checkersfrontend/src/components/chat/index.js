@@ -1,7 +1,6 @@
 import Stomp from "stompjs";
 import "./styles.scss";
 import React from "react";
-import { mockComponent } from "react-dom/test-utils";
 
 export const Chat = ({ userinfo, setUserInfo }) => {
   const inputChange = (e) => {
@@ -33,7 +32,7 @@ export const Chat = ({ userinfo, setUserInfo }) => {
   const onConnected = () => {
     stompClient.subscribe("/topic/public", onMessageReceived);
     stompClient.send(
-      "/app/chat.newUser",
+      "/app/checkers.newUser",
       {},
       JSON.stringify({ sender: username.value, type: "CONNECT" })
     );
@@ -61,7 +60,7 @@ export const Chat = ({ userinfo, setUserInfo }) => {
         type: "CHAT",
         time: Date().toLocaleString(),
       };
-      stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+      stompClient.send("/app/checkers.send", {}, JSON.stringify(chatMessage));
       messageInput.value = "";
     }
   };
