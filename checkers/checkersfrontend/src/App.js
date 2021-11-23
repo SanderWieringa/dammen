@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import { CheckersBoard } from "./components/statelessBoard";
 import { Chat } from "./components/chat";
+import { Home } from "./components/home";
 
 export const App = () => {
   const [userInfo, setUserInfo] = useState({
@@ -29,6 +30,7 @@ export const App = () => {
           <Route exact path="/chat">
             <Chat userinfo={userInfo} setUserInfo={Chat} />
           </Route>
+          <Route exact path="/Home" component={Home} />
         </Switch>
       </Router>
     </div>
