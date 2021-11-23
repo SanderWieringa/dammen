@@ -4,7 +4,7 @@ import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
 export const Piece = (props) => {
-  const player = props.data === "O" ? "white" : "black";
+  const player = props.data === "BLACK" ? "white" : "black";
 
   return (
     <img

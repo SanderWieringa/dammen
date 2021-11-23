@@ -1,7 +1,7 @@
 import React from "react";
 import auth from "../../util/auth";
 import "./styles.scss";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 
 export const Login = ({ userinfo, setUserInfo }) => {
   let history = useHistory();
@@ -12,25 +12,28 @@ export const Login = ({ userinfo, setUserInfo }) => {
     e.preventDefault();
 
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },    
-      mode: 'cors',
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
       body: JSON.stringify(userinfo),
     };
 
-    fetch('http://localhost:8080/account/authenticate', requestOptions)
-    .then(function(response){return response.json();})
-    .then(function(data) {
-        if(data.jwt) {
-            localStorage.setItem('jwtToken', data.jwt)
-            auth.login(() => {
-              history.push("/home")
-          })
+    fetch("http://localhost:8080/account/authenticate", requestOptions)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        if (data.jwt) {
+          localStorage.setItem("jwtToken", data.jwt);
+          localStorage.setItem("username", userinfo);
+          auth.login(() => {
+            history.push("/home");
+          });
         }
-    }).catch(function(error) {
-        console.log(error)
-    })
-    
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (

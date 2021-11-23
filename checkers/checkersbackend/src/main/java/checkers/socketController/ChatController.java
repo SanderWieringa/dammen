@@ -1,7 +1,9 @@
 package checkers.socketController;
 
+import checkers.model.Board;
 import checkers.socketModel.ChatMessage;
 import checkers.socketModel.CheckersMessage;
+import checkers.socketModel.LobbyMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -22,6 +24,7 @@ public class ChatController {
     @SendTo("/topic/public")
     public CheckersMessage newUser(@Payload final CheckersMessage checkersMessage, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", checkersMessage.getSender());
+        checkersMessage.setContent(new Board());
         return checkersMessage;
     }
 }

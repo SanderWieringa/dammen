@@ -17,7 +17,7 @@ export const Signup = ({ userinfo, setUserInfo }) => {
     e.preventDefault();
     console.log(userinfo);
 
-    fetch("http://localhost:8080/account/register/", requestOptions).then(
+    fetch("http://localhost:8080/account/register", requestOptions).then(
       (res) => {
         console.log(res);
         console.log(res.data);

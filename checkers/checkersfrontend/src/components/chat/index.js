@@ -2,7 +2,10 @@ import Stomp from "stompjs";
 import "./styles.scss";
 import React from "react";
 
-export const Chat = ({ userinfo, setUserInfo }) => {
+export const Chat = (
+  { userinfo, setUserInfo },
+  { boardData, setBoardData }
+) => {
   const inputChange = (e) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
@@ -54,13 +57,16 @@ export const Chat = ({ userinfo, setUserInfo }) => {
     const messageContent = messageInput.value.trim();
 
     if (messageContent && stompClient) {
-      const chatMessage = {
+      const checkersMessage = {
         sender: username.value,
         content: messageInput.value,
         type: "CHAT",
-        time: Date().toLocaleString(),
       };
-      stompClient.send("/app/checkers.send", {}, JSON.stringify(chatMessage));
+      stompClient.send(
+        "/app/checkers.send",
+        {},
+        JSON.stringify(checkersMessage)
+      );
       messageInput.value = "";
     }
   };
@@ -101,12 +107,14 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
-      message.content = message.sender + " connected!";
+      setBoardData(message.content);
+      console.log("data", message.content);
+      //message.content = message.sender + " connected!";
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else {
-      messageElement.classList.add("chat-message");
+      messageElement.classList.add("checkers-message");
 
       const avatarContainer = document.createElement("div");
       avatarContainer.className = "img_cont_msg";

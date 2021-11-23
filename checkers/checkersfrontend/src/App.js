@@ -9,6 +9,9 @@ import { Chat } from "./components/chat";
 import { Home } from "./components/home";
 
 export const App = () => {
+  const [boardData, setBoardData] = useState({
+    data: [[], []],
+  });
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",
@@ -26,9 +29,13 @@ export const App = () => {
           <Route exact path="/register">
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
-          <Route exact path="/" component={CheckersBoard} />
-          <Route exact path="/chat">
-            <Chat userinfo={userInfo} setUserInfo={Chat} />
+          <Route>
+            <CheckersBoard
+              userinfo={userInfo}
+              setUserInfo={setUserInfo}
+              boardData={boardData}
+              setBoardData={setBoardData}
+            ></CheckersBoard>
           </Route>
           <Route exact path="/Home" component={Home} />
         </Switch>
