@@ -1,7 +1,4 @@
-package checkers.Model;
-
-import checkers.model.Color;
-import checkers.model.Piece;
+package checkers.model;
 
 public class Board {
     private checkers.model.User user1;

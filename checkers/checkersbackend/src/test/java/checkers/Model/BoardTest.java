@@ -1,6 +1,6 @@
 package checkers.Model;
 
-import checkers.Model.Board;
+import checkers.model.Board;
 import org.junit.jupiter.api.Test;
 
 public class BoardTest {
