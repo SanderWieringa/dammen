@@ -23,7 +23,7 @@ export const Chat = ({ userinfo, setUserInfo }) => {
 
       //ToDo:
 
-      const socket = new WebSocket("ws://localhost:8080/chat-example");
+      const socket = new WebSocket("ws://localhost:8080/checkers-websocket");
 
       stompClient = Stomp.over(socket);
       stompClient.connect({}, onConnected, onError);
