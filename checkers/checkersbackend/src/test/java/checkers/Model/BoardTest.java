@@ -1,13 +1,12 @@
 package checkers.Model;
 
+import checkers.Model.Board;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class BoardTest {
-
+public class BoardTest {
     @Test
     void bord() {
-        Board a = new Board();
+        Board board = new Board();
+        System.out.println(board.bord());
     }
 }
