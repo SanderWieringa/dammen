@@ -3,7 +3,7 @@
 }
 
 .square-light {
-  background-color: #ffce9e;
+  background: #fafafa;
   width: 66px;
   height: 66px;
 }
@@ -21,6 +21,11 @@ img.piece {
   width: 3.5rem;
 }
 
-th {
-  color: white;
+.white {
+  border-radius: 50%;
+  background-color: #d78637;
+}
+
+.black {
+  border-radius: 1.5px;
 }
