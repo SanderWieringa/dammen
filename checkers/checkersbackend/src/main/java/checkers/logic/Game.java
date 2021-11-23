@@ -1,6 +1,6 @@
 package checkers.logic;
 
-import checkers.model.Board;
+//import checkers.model.Board;
 import checkers.model.User;
 import checkers.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Game {
     @Autowired
     private UserRepository userRepository;
-    private Board board;
+    //private Board board;
 
     public void newUser(User user){
         userRepository.save(user);
