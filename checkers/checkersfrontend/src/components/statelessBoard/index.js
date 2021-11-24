@@ -2,15 +2,9 @@ import { Row } from "./Row";
 import Stomp from "stompjs";
 import "./styles.scss";
 
-export const CheckersBoard = (
-  { userinfo, setUserInfo },
-  { boardData, setBoardData }
-) => {
+export const CheckersBoard = () => {
   const setData = (messageContent) => {
     data = messageContent;
-  };
-  const inputChange = (e) => {
-    setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
   let data = [
     [" ", "", " ", "", " ", "", " ", ""],
@@ -23,22 +17,27 @@ export const CheckersBoard = (
     ["", " ", "", " ", "", " ", "", " "],
   ];
 
+  const parseJwt = (token) => {
+    if (!token) {
+      return;
+    }
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace("-", "+").replace("_", "/");
+    return JSON.parse(window.atob(base64));
+  };
+
   let stompClient;
   let username;
   const connect = (e) => {
     e.preventDefault();
 
-    username = userinfo.username;
-    console.log("username: ", username);
+    let token = localStorage.getItem("jwtToken");
+    let parsedToken = parseJwt(token);
+    username = parsedToken.sub;
 
     if (username) {
-      // const login = document.getElementById("login");
-      // login.classList.add("hide");
-
-      // const chatPage = document.getElementById("chat-page");
-      // chatPage.classList.remove("hide");
-
-      //ToDo:
+      const login = document.getElementById("login");
+      login.classList.add("hide");
 
       const socket = new WebSocket("ws://localhost:8080/checkers-websocket");
 
@@ -97,9 +96,7 @@ export const CheckersBoard = (
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
       setData(message.content);
-      //setBoardData(message.content);
-      console.log("data", message.content);
-      //message.content = message.sender + " connected!";
+      tableRow();
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
@@ -126,6 +123,14 @@ export const CheckersBoard = (
     }
 
     messageElement.innerHTML = message.content;
+  };
+
+  const tableRow = () => {
+    data.map((rowData, index) => {
+      const number = data.length - index;
+
+      return <Row key={number.toString()} number={number} data={rowData} />;
+    });
   };
 
   return (

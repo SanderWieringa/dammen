@@ -30,12 +30,7 @@ export const App = () => {
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
           <Route>
-            <CheckersBoard
-              userinfo={userInfo}
-              setUserInfo={setUserInfo}
-              boardData={boardData}
-              setBoardData={setBoardData}
-            ></CheckersBoard>
+            <CheckersBoard></CheckersBoard>
           </Route>
           <Route exact path="/Home" component={Home} />
         </Switch>
