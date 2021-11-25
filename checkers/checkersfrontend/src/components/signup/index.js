@@ -15,13 +15,9 @@ export const Signup = ({ userinfo, setUserInfo }) => {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log(userinfo);
 
     fetch("http://localhost:8080/account/register", requestOptions).then(
-      (res) => {
-        console.log(res);
-        console.log(res.data);
-      }
+      (res) => {}
     );
   };
 

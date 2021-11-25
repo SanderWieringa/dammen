@@ -4,7 +4,6 @@ import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
 export const Piece = (props) => {
-  console.log("props.data: ", props.data);
   const player = props.data.Board.Piece.Color === "BLACK" ? "white" : "black";
 
   return (

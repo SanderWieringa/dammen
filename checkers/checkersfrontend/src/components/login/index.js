@@ -31,9 +31,7 @@ export const Login = ({ userinfo, setUserInfo }) => {
           });
         }
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      .catch(function (error) {});
   };
 
   return (

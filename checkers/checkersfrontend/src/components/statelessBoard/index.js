@@ -1,21 +1,23 @@
 import { Row } from "./Row";
 import Stomp from "stompjs";
 import "./styles.scss";
+import { useState } from "react";
 
 export const CheckersBoard = () => {
-  const setData = (messageContent) => {
-    data = messageContent;
+  let [data, setData] = useState(
+    [" ", "", " ", "", " ", "", " ", ""],
+    ["", " ", "", " ", "", " ", "", " "],
+    [" ", "", " ", "", " ", "", " ", ""],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " "],
+    ["", " ", "", " ", "", " ", "", " "],
+    [" ", "", " ", "", " ", "", " ", ""],
+    ["", " ", "", " ", "", " ", "", " "]
+  );
+
+  const transferData = (messageContent) => {
+    setData(messageContent);
   };
-  let data = [
-    [" ", "", " ", "", " ", "", " ", ""],
-    ["", " ", "", " ", "", " ", "", " "],
-    [" ", "", " ", "", " ", "", " ", ""],
-    [" ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " "],
-    ["", " ", "", " ", "", " ", "", " "],
-    [" ", "", " ", "", " ", "", " ", ""],
-    ["", " ", "", " ", "", " ", "", " "],
-  ];
 
   const parseJwt = (token) => {
     if (!token) {
@@ -95,7 +97,7 @@ export const CheckersBoard = () => {
 
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
-      setData(message.content);
+      transferData(message.content);
       tableRow();
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
@@ -176,7 +178,7 @@ export const CheckersBoard = () => {
               const number = data.length - index;
 
               return (
-                <Row key={number.toString()} number={number} data={rowData} />
+                <Row key={number.toString()} number={number} data={data} />
               );
             })}
           </tbody>

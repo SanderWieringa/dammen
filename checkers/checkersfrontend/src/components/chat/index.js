@@ -108,7 +108,6 @@ export const Chat = (
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
       setBoardData(message.content);
-      console.log("data", message.content);
       //message.content = message.sender + " connected!";
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
