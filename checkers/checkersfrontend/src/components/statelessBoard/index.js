@@ -1,22 +1,44 @@
 import { Row } from "./Row";
+
 import Stomp from "stompjs";
 import "./styles.scss";
 import { useState } from "react";
 
-export const CheckersBoard = () => {
-  let [data, setData] = useState(
-    [" ", "", " ", "", " ", "", " ", ""],
+export const CheckersBoard = ({ boardData, setBoardData }) => {
+  const [test, setTest] = useState({ test: [] });
+  let data = [
+    ["WHITE", "BLACK", "", "", " ", "", " ", ""],
     ["", " ", "", " ", "", " ", "", " "],
     [" ", "", " ", "", " ", "", " ", ""],
     [" ", " ", " ", " ", " ", " ", " ", " "],
     [" ", " ", " ", " ", " ", " ", " ", " "],
     ["", " ", "", " ", "", " ", "", " "],
     [" ", "", " ", "", " ", "", " ", ""],
-    ["", " ", "", " ", "", " ", "", " "]
-  );
+    ["", " ", "", " ", "", " ", "", " "],
+  ];
+  // let [boardData, setBoardData] = useState([
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  //   [{}, {}, {}, {}, {}, {}, {}, {}],
+  // ]);
+
+  // setResult(result => [...result, response]);
 
   const transferData = (messageContent) => {
-    setData(messageContent);
+    //setData({ ...data, [messageContent.name]: messageContent["board"] });
+    console.log("setDataLog: ", messageContent);
+    console.log("setDataLog[board]: ", messageContent["board"]);
+    console.log("setDataLog.board: ", messageContent.board);
+    console.log("test: ", test);
+    setTest(messageContent.board);
+    console.log("test: ", test);
+    setBoardData({ ...boardData, [messageContent]: boardData });
+    console.log("setDataDataLog: ", data);
   };
 
   const parseJwt = (token) => {
@@ -98,7 +120,10 @@ export const CheckersBoard = () => {
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
       transferData(message.content);
-      tableRow();
+      setTest(message.content);
+      console.log("message.content: ", message.content);
+      console.log("message.content[board]: ", message.content["board"]);
+      tableRow(message);
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
@@ -127,11 +152,16 @@ export const CheckersBoard = () => {
     messageElement.innerHTML = message.content;
   };
 
-  const tableRow = () => {
-    data.map((rowData, index) => {
-      const number = data.length - index;
+  const tableRow = (message) => {
+    console.log("message: ", message);
+    console.log("message.content.board: ", message.content.board);
+    message.content.board.map((rowData, index) => {
+      console.log("boardData: ", boardData);
+      const number = boardData.length - index;
+      console.log("rowData: ", rowData);
 
       return <Row key={number.toString()} number={number} data={rowData} />;
+      //return <CheckersBoard data={rowData} />;
     });
   };
 
@@ -178,7 +208,7 @@ export const CheckersBoard = () => {
               const number = data.length - index;
 
               return (
-                <Row key={number.toString()} number={number} data={data} />
+                <Row key={number.toString()} number={number} data={rowData} />
               );
             })}
           </tbody>

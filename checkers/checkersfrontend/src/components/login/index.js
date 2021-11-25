@@ -2,12 +2,14 @@ import React from "react";
 import auth from "../../util/auth";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
+import { connect } from "net";
 
 export const Login = ({ userinfo, setUserInfo }) => {
   let history = useHistory();
   const inputChange = (e) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
+
   const submit = (e) => {
     e.preventDefault();
 

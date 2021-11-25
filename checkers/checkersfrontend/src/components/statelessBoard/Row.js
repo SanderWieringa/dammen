@@ -8,7 +8,8 @@ export const Row = (props) => {
       <th>{props.number}</th>
 
       {props.data.map((squareData, index) => {
-        console.log(props);
+        console.log("props: ", props);
+        console.log("squareData: ", squareData);
         const column = String.fromCharCode(97 + index);
         return (
           <Square
