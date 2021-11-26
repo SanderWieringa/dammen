@@ -3,7 +3,6 @@ import { Row } from "./Row";
 import Stomp from "stompjs";
 import "./styles.scss";
 import { useState } from "react";
-//import SquareModel from "../../models/SquareModel";
 
 export const CheckersBoard = () => {
   let [data, setData] = useState([
@@ -176,8 +175,6 @@ export const CheckersBoard = () => {
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
       transferData(message.content);
-      //setData(boardData);
-      //tableRow(message);
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
@@ -204,16 +201,6 @@ export const CheckersBoard = () => {
     }
 
     messageElement.innerHTML = message.content;
-  };
-
-  const tableRow = (data) => {
-    //console.log("boardData.content.board: ", boardData.content.board);
-    data.map((rowData, index) => {
-      console.log("data3: ", data);
-      const number = data.length - index;
-
-      return <Row key={number.toString()} number={number} data={rowData} />;
-    });
   };
 
   return (
