@@ -9,6 +9,8 @@ export const Row = (props) => {
 
       {props.data.map((squareData, index) => {
         console.log("props: ", props);
+        console.log("squareData: ", squareData);
+        console.log("squareData.color: ", squareData.color);
         const column = String.fromCharCode(97 + index);
         return (
           <Square

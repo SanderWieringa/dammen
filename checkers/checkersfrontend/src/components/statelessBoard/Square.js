@@ -9,7 +9,7 @@ export const Square = (props) => {
 
   return (
     <td className={"square-" + (isLight ? "light" : "dark")}>
-      {props.data.trim() && <Piece data={props.data} />}
+      {props.data.color.trim() && <Piece data={props.data} />}
     </td>
   );
 };

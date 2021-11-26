@@ -19,11 +19,16 @@ public class Board {
                         if (r >= 5) {
                             board[r][c] = new Piece(false, Color.WHITE);
                         }
+
+                    }
+                    else {
+                        board[r][c] = new Piece(false, Color.EMPTY);
                     }
                 } else {
-                    board[r][c] = null;
+                    board[r][c] = new Piece(false, Color.EMPTY);
 
                 }
+                System.out.println(board[r][c].getColor());
             }
         }
     }

@@ -9,90 +9,90 @@ import { Chat } from "./components/chat";
 import { Home } from "./components/home";
 
 export const App = () => {
-  const [boardData, setBoardData] = useState({
-    data: [
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-      [
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "WHITE", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-        { color: "BLACK", king: false },
-      ],
-    ],
-  });
+  // const [boardData, setBoardData] = useState({
+  //   data: [
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //     [
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "WHITE", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //       { color: "BLACK", king: false },
+  //     ],
+  //   ],
+  // });
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",
@@ -111,7 +111,7 @@ export const App = () => {
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
           <Route exact path="/">
-            <CheckersBoard boardData={boardData} setBoardData={setBoardData} />
+            <CheckersBoard />
           </Route>
           <Route exact path="/Home" component={Home} />
         </Switch>

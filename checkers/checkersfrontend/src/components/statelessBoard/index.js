@@ -3,32 +3,126 @@ import { Row } from "./Row";
 import Stomp from "stompjs";
 import "./styles.scss";
 import { useState } from "react";
+//import SquareModel from "../../models/SquareModel";
 
-export const CheckersBoard = ({ boardData, setBoardData }) => {
-  // let [stateData, setData] = useState([
-  //   [{ color: "WHITE", king: false }, "", " ", "", " ", "", " ", ""],
-  //   ["", " ", "", " ", "", " ", "", " "],
-  //   [" ", "", " ", "", " ", "", " ", ""],
-  //   [" ", " ", " ", " ", " ", " ", " ", " "],
-  //   [" ", " ", " ", " ", " ", " ", " ", " "],
-  //   ["", " ", "", " ", "", " ", "", " "],
-  //   [" ", "", " ", "", " ", "", " ", ""],
-  //   ["", " ", "", " ", "", " ", "", " "],
-  // ]);
-  let data = [
-    ["WHITE", "BLACK", "", "", " ", "", " ", ""],
-    ["", " ", "", " ", "", " ", "", " "],
-    [" ", "", " ", "", " ", "", " ", ""],
-    [" ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " "],
-    ["", " ", "", " ", "", " ", "", " "],
-    [" ", "", " ", "", " ", "", " ", ""],
-    ["", " ", "", " ", "", " ", "", " "],
-  ];
+export const CheckersBoard = () => {
+  let [data, setData] = useState([
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+    ],
+    [
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+      { color: "WHITE", king: false },
+    ],
+    [
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+      { color: "BLACK", king: false },
+    ],
+  ]);
 
   const transferData = (boardData) => {
     console.log("boardData: ", boardData);
-    //setData({ ...data, [boardData.name]: boardData.content["board"] });
+    console.log("boardData[board]: ", boardData["board"]);
+    console.log("data1: ", data);
+
+    for (let i = 0; i < 8; i++) {
+      setData(boardData["board"][i]);
+    }
+
+    //setData((data) => ({ data: [...data, boardData["board"]] }));
+
+    //setData(boardData["board"]);
+
+    //setData((data) => [...data, boardData.board, `${data.length}`]);
+
+    //{ ...userinfo, [e.target.name]: e.target.value }
+    // data[0] = boardData["board"][0];
+    // data[1] = boardData["board"][1];
+    // data[2] = boardData["board"][2];
+    // data[3] = boardData["board"][3];
+    // tableRow(data);
+    //data.map(boardData.board);
+    // setData({ ...data, [data]: boardData["board"] });
+
+    //     setData({ for(i = 0, i < d, i++)
+    //   }
+    // }});
+
+    // for (let i = 0; i < 8; i++) {
+    //   data[i] = boardData["board"][i];
+    // }
+    // setData(data);
+    // tableRow(data);
+    console.log("data2: ", data);
     //setBoardData({ ...boardData, [messageContent]: boardData });
   };
 
@@ -110,9 +204,9 @@ export const CheckersBoard = ({ boardData, setBoardData }) => {
 
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
-      //transferData(message.content);
+      transferData(message.content);
       //setData(boardData);
-      tableRow(message);
+      //tableRow(message);
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
@@ -141,20 +235,11 @@ export const CheckersBoard = ({ boardData, setBoardData }) => {
     messageElement.innerHTML = message.content;
   };
 
-  const tableRow = (boardData) => {
-    let testData = [
-      ["WHITE", "BLACK", "BLACK", "", " ", "", " ", ""],
-      ["", " ", "", " ", "", " ", "", " "],
-      [" ", "", " ", "", " ", "", " ", ""],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      [" ", " ", " ", " ", " ", " ", " ", " "],
-      ["", " ", "", " ", "", " ", "", " "],
-      [" ", "", " ", "", " ", "", " ", ""],
-      ["", " ", "", " ", "", " ", "", " "],
-    ];
-    console.log("boardData.content.board: ", boardData.content.board);
-    testData.map((rowData, index) => {
-      const number = testData.length - index;
+  const tableRow = (data) => {
+    //console.log("boardData.content.board: ", boardData.content.board);
+    data.map((rowData, index) => {
+      console.log("data3: ", data);
+      const number = data.length - index;
 
       return <Row key={number.toString()} number={number} data={rowData} />;
     });

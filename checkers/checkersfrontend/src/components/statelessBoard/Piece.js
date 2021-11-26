@@ -4,11 +4,13 @@ import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
 export const Piece = (props) => {
-  const player = props.data === "WHITE" ? "white" : "black";
+  console.log("props.data: ", props.data);
+  const player =
+    props.data.color === "WHITE" ? "white" : "BLACK" ? "black" : "";
 
   return (
     <img
-      src={player === "white" ? whiteMan : blackMan}
+      src={player === "white" ? whiteMan : "black" ? blackMan : ""}
       alt={`A ${player} man.`}
       className={"piece"}
     />
