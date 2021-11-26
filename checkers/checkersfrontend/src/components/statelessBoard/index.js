@@ -8,54 +8,24 @@ import { useState } from "react";
 export const CheckersBoard = () => {
   let [data, setData] = useState([
     [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
     ],
     [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-    ],
-    [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-    ],
-    [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-    ],
-    [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
     ],
     [
       { color: "EMPTY", king: false },
@@ -68,62 +38,63 @@ export const CheckersBoard = () => {
       { color: "EMPTY", king: false },
     ],
     [
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
-      { color: "WHITE", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
     ],
     [
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
-      { color: "BLACK", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+    ],
+    [
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+    ],
+    [
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+    ],
+    [
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
+      { color: "EMPTY", king: false },
     ],
   ]);
 
   const transferData = (boardData) => {
-    console.log("boardData: ", boardData);
     console.log("boardData[board]: ", boardData["board"]);
     console.log("data1: ", data);
 
-    for (let i = 0; i < 8; i++) {
-      setData(boardData["board"][i]);
-    }
-
-    //setData((data) => ({ data: [...data, boardData["board"]] }));
-
-    //setData(boardData["board"]);
-
-    //setData((data) => [...data, boardData.board, `${data.length}`]);
-
-    //{ ...userinfo, [e.target.name]: e.target.value }
-    // data[0] = boardData["board"][0];
-    // data[1] = boardData["board"][1];
-    // data[2] = boardData["board"][2];
-    // data[3] = boardData["board"][3];
-    // tableRow(data);
-    //data.map(boardData.board);
-    // setData({ ...data, [data]: boardData["board"] });
-
-    //     setData({ for(i = 0, i < d, i++)
-    //   }
-    // }});
-
-    // for (let i = 0; i < 8; i++) {
-    //   data[i] = boardData["board"][i];
-    // }
-    // setData(data);
-    // tableRow(data);
+    setData(boardData.board);
     console.log("data2: ", data);
-    //setBoardData({ ...boardData, [messageContent]: boardData });
   };
 
   const parseJwt = (token) => {
