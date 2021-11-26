@@ -5,7 +5,16 @@ import "./styles.scss";
 import { useState } from "react";
 
 export const CheckersBoard = ({ boardData, setBoardData }) => {
-  const [test, setTest] = useState({ test: [] });
+  // let [stateData, setData] = useState([
+  //   [{ color: "WHITE", king: false }, "", " ", "", " ", "", " ", ""],
+  //   ["", " ", "", " ", "", " ", "", " "],
+  //   [" ", "", " ", "", " ", "", " ", ""],
+  //   [" ", " ", " ", " ", " ", " ", " ", " "],
+  //   [" ", " ", " ", " ", " ", " ", " ", " "],
+  //   ["", " ", "", " ", "", " ", "", " "],
+  //   [" ", "", " ", "", " ", "", " ", ""],
+  //   ["", " ", "", " ", "", " ", "", " "],
+  // ]);
   let data = [
     ["WHITE", "BLACK", "", "", " ", "", " ", ""],
     ["", " ", "", " ", "", " ", "", " "],
@@ -16,29 +25,11 @@ export const CheckersBoard = ({ boardData, setBoardData }) => {
     [" ", "", " ", "", " ", "", " ", ""],
     ["", " ", "", " ", "", " ", "", " "],
   ];
-  // let [boardData, setBoardData] = useState([
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  //   [{}, {}, {}, {}, {}, {}, {}, {}],
-  // ]);
 
-  // setResult(result => [...result, response]);
-
-  const transferData = (messageContent) => {
-    //setData({ ...data, [messageContent.name]: messageContent["board"] });
-    console.log("setDataLog: ", messageContent);
-    console.log("setDataLog[board]: ", messageContent["board"]);
-    console.log("setDataLog.board: ", messageContent.board);
-    console.log("test: ", test);
-    setTest(messageContent.board);
-    console.log("test: ", test);
-    setBoardData({ ...boardData, [messageContent]: boardData });
-    console.log("setDataDataLog: ", data);
+  const transferData = (boardData) => {
+    console.log("boardData: ", boardData);
+    //setData({ ...data, [boardData.name]: boardData.content["board"] });
+    //setBoardData({ ...boardData, [messageContent]: boardData });
   };
 
   const parseJwt = (token) => {
@@ -119,10 +110,8 @@ export const CheckersBoard = ({ boardData, setBoardData }) => {
 
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
-      transferData(message.content);
-      setTest(message.content);
-      console.log("message.content: ", message.content);
-      console.log("message.content[board]: ", message.content["board"]);
+      //transferData(message.content);
+      //setData(boardData);
       tableRow(message);
     } else if (message.type === "DISCONNECT") {
       messageElement.classList.add("event-message");
@@ -152,16 +141,22 @@ export const CheckersBoard = ({ boardData, setBoardData }) => {
     messageElement.innerHTML = message.content;
   };
 
-  const tableRow = (message) => {
-    console.log("message: ", message);
-    console.log("message.content.board: ", message.content.board);
-    message.content.board.map((rowData, index) => {
-      console.log("boardData: ", boardData);
-      const number = boardData.length - index;
-      console.log("rowData: ", rowData);
+  const tableRow = (boardData) => {
+    let testData = [
+      ["WHITE", "BLACK", "BLACK", "", " ", "", " ", ""],
+      ["", " ", "", " ", "", " ", "", " "],
+      [" ", "", " ", "", " ", "", " ", ""],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      [" ", " ", " ", " ", " ", " ", " ", " "],
+      ["", " ", "", " ", "", " ", "", " "],
+      [" ", "", " ", "", " ", "", " ", ""],
+      ["", " ", "", " ", "", " ", "", " "],
+    ];
+    console.log("boardData.content.board: ", boardData.content.board);
+    testData.map((rowData, index) => {
+      const number = testData.length - index;
 
       return <Row key={number.toString()} number={number} data={rowData} />;
-      //return <CheckersBoard data={rowData} />;
     });
   };
 
