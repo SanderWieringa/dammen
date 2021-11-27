@@ -5,94 +5,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 import { CheckersBoard } from "./components/statelessBoard";
-import { Chat } from "./components/chat";
+//import { Chat } from "./components/chat";
 import { Home } from "./components/home";
 
 export const App = () => {
-  // const [boardData, setBoardData] = useState({
-  //   data: [
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //     [
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "WHITE", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //       { color: "BLACK", king: false },
-  //     ],
-  //   ],
-  // });
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",

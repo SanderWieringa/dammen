@@ -1,7 +1,6 @@
 import React from "react";
 import blackMan from "../../black-man.svg";
 import whiteMan from "../../white-man.svg";
-import empty from "../../blank.svg.png";
 import "./styles.scss";
 
 export const Piece = (props) => {

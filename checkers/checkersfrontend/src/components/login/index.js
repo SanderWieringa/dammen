@@ -2,7 +2,6 @@ import React from "react";
 import auth from "../../util/auth";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
-import { connect } from "net";
 
 export const Login = ({ userinfo, setUserInfo }) => {
   let history = useHistory();

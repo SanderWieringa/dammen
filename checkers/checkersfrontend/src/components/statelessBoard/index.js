@@ -5,6 +5,9 @@ import "./styles.scss";
 import { useState } from "react";
 
 export const CheckersBoard = () => {
+  //const [stompClientState, setStompClientState] = useState();
+  let stompClient;
+  let username;
   let [data, setData] = useState([
     [
       { color: "EMPTY", king: false },
@@ -105,8 +108,6 @@ export const CheckersBoard = () => {
     return JSON.parse(window.atob(base64));
   };
 
-  let stompClient;
-  let username;
   const connect = (e) => {
     e.preventDefault();
 
@@ -124,11 +125,16 @@ export const CheckersBoard = () => {
       const socket = new WebSocket("ws://localhost:8080/checkers-websocket");
 
       stompClient = Stomp.over(socket);
+      //setStompClientState(stompClient);
+
       stompClient.connect({}, onConnected, onError);
+      console.log("stompCLient1: ", stompClient);
+      //console.log("stompCLientState: ", stompClientState);
     }
   };
 
   const onConnected = () => {
+    console.log("stompclient2: ", stompClient);
     stompClient.subscribe("/topic/public", onMessageReceived);
     stompClient.send(
       "/app/checkers.newUser",
@@ -161,8 +167,11 @@ export const CheckersBoard = () => {
   };
 
   const sendMessage = (event) => {
-    const messageContent = data;
+    event.preventDefault();
+    let messageContent = data;
     console.log("messageContent: ", messageContent);
+    console.log("stompClient: ", stompClient);
+    //console.log("stompCLientState2: ", stompClientState);
 
     if (messageContent && stompClient) {
       const chatMessage = {
@@ -170,10 +179,11 @@ export const CheckersBoard = () => {
         content: messageContent,
         type: "CHAT",
       };
+      console.log("chatMessage: ", chatMessage);
       stompClient.send("/app/checkers.send", {}, JSON.stringify(chatMessage));
       messageContent = data;
     }
-    event.preventDefault();
+    console.log("here2");
   };
 
   const onMessageReceived = (payload) => {
@@ -213,11 +223,6 @@ export const CheckersBoard = () => {
       messageElement.style["background-color"] = getAvatarColor(message.sender);
 
       flexBox.appendChild(avatarContainer);
-
-      const time = document.createElement("span");
-      time.className = "msg_time_send";
-      time.innerHTML = message.time;
-      messageElement.appendChild(time);
     }
 
     messageElement.innerHTML = message.content;
@@ -242,7 +247,7 @@ export const CheckersBoard = () => {
                 <div className="input-group">
                   <div className="input-group-append">
                     <button className="fas fa-location-arrow" type="submit">
-                      X
+                      Join Lobby
                     </button>
                   </div>
                 </div>
