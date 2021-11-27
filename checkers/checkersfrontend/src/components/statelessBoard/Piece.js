@@ -12,6 +12,6 @@ export const Piece = (props) => {
   if (props.data.color === "BLACK") {
     return <img src={blackMan} alt={``} className={"piece"} />;
   } else {
-    return <img src={empty} alt={``} className={"piece"} />;
+    return null;
   }
 };
