@@ -195,6 +195,8 @@ export const CheckersBoard = () => {
     } else {
       messageElement.classList.add("chat-message");
 
+      transferData(message.content);
+
       const avatarContainer = document.createElement("div");
       avatarContainer.className = "img_cont_msg";
       const avatarElement = document.createElement("div");
