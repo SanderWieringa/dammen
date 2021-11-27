@@ -1,5 +1,7 @@
 package checkers.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Board {
     private checkers.model.User user1;
     private checkers.model.User user2;

@@ -5,9 +5,9 @@ import "./styles.scss";
 import { useState } from "react";
 
 export const CheckersBoard = () => {
-  //const [stompClientState, setStompClientState] = useState();
   let stompClient;
   let username;
+
   let [data, setData] = useState([
     [
       { color: "EMPTY", king: false },
@@ -92,11 +92,7 @@ export const CheckersBoard = () => {
   ]);
 
   const transferData = (boardData) => {
-    console.log("boardData[board]: ", boardData["board"]);
-    console.log("data1: ", data);
-
     setData(boardData.board);
-    console.log("data2: ", data);
   };
 
   const parseJwt = (token) => {
@@ -113,9 +109,9 @@ export const CheckersBoard = () => {
 
     let token = localStorage.getItem("jwtToken");
     let parsedToken = parseJwt(token);
-    username = parsedToken.sub;
+    global.username = parsedToken.sub;
 
-    if (username) {
+    if (global.username) {
       const login = document.getElementById("login");
       login.classList.add("hide");
 
@@ -124,22 +120,18 @@ export const CheckersBoard = () => {
 
       const socket = new WebSocket("ws://localhost:8080/checkers-websocket");
 
-      stompClient = Stomp.over(socket);
-      //setStompClientState(stompClient);
+      global.stompClient = Stomp.over(socket);
 
-      stompClient.connect({}, onConnected, onError);
-      console.log("stompCLient1: ", stompClient);
-      //console.log("stompCLientState: ", stompClientState);
+      global.stompClient.connect({}, onConnected, onError);
     }
   };
 
   const onConnected = () => {
-    console.log("stompclient2: ", stompClient);
-    stompClient.subscribe("/topic/public", onMessageReceived);
-    stompClient.send(
+    global.stompClient.subscribe("/topic/public", onMessageReceived);
+    global.stompClient.send(
       "/app/checkers.newUser",
       {},
-      JSON.stringify({ sender: username, type: "CONNECT" })
+      JSON.stringify({ sender: global.username, type: "CONNECT" })
     );
     const status = document.getElementById("status");
     status.className = "hide";
@@ -169,37 +161,30 @@ export const CheckersBoard = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     let messageContent = data;
-    console.log("messageContent: ", messageContent);
-    console.log("stompClient: ", stompClient);
-    //console.log("stompCLientState2: ", stompClientState);
 
-    if (messageContent && stompClient) {
+    if (messageContent && global.stompClient) {
       const chatMessage = {
-        sender: username,
-        content: messageContent,
+        sender: global.username,
+        content: { board: messageContent },
         type: "CHAT",
       };
-      console.log("chatMessage: ", chatMessage);
-      stompClient.send("/app/checkers.send", {}, JSON.stringify(chatMessage));
+      global.stompClient.send(
+        "/app/checkers.send",
+        {},
+        JSON.stringify(chatMessage)
+      );
       messageContent = data;
     }
-    console.log("here2");
   };
+
+  const messageControls = document.createElement("message-controls");
+  messageControls.addEventListener("submit", sendMessage, true);
 
   const onMessageReceived = (payload) => {
     const message = JSON.parse(payload.body);
 
-    const chatCard = document.createElement("div");
-    chatCard.className = "card-body";
-
-    const flexBox = document.createElement("div");
-    flexBox.className = "d-flex justify-content-end mb-4";
-    chatCard.appendChild(flexBox);
-
     const messageElement = document.createElement("div");
     messageElement.className = "msg_container_send";
-
-    flexBox.appendChild(messageElement);
 
     if (message.type === "CONNECT") {
       messageElement.classList.add("event-message");
@@ -208,7 +193,6 @@ export const CheckersBoard = () => {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else {
-      console.log("here1");
       messageElement.classList.add("chat-message");
 
       const avatarContainer = document.createElement("div");
@@ -221,15 +205,9 @@ export const CheckersBoard = () => {
       avatarContainer.appendChild(avatarElement);
 
       messageElement.style["background-color"] = getAvatarColor(message.sender);
-
-      flexBox.appendChild(avatarContainer);
     }
 
     messageElement.innerHTML = message.content;
-
-    const chat = document.createElement("chat");
-    chat.appendChild(flexBox);
-    chat.scrollTop = chat.scrollHeight;
   };
 
   return (
