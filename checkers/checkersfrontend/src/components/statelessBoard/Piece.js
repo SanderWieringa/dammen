@@ -27,7 +27,6 @@ export const Piece = (props) => {
         onDragOver={dragOver}
         src={whiteMan}
         alt={``}
-        className={"piece"}
       />
     );
   }
@@ -35,14 +34,13 @@ export const Piece = (props) => {
     return (
       <img
         id={props.id}
-        className={props.className}
         draggable={props.draggable}
         onDragStart={dragStart}
         onDragOver={dragOver}
         src={blackMan}
         alt={``}
         className={"piece"}
-      />
+      ></img>
     );
   } else {
     return null;

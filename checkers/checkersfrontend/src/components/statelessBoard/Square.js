@@ -32,7 +32,6 @@ export const Square = (props) => {
     return (
       <td
         id={props.id}
-        className={props.className}
         onDrop={drop}
         onDragOver={dragOver}
         className="square-dark"
