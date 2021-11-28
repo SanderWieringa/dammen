@@ -8,17 +8,28 @@
   height: 66px;
 }
 
+.flexbox {
+  display: flex;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  margin: 0 auto;
+
+  padding: 15px;
+}
+
 .square-dark {
   background-color: #5d432c;
   min-width: 65px;
   min-height: 65px;
+
+  display: flex;
 }
 
 img.piece {
   margin: auto;
   display: block;
-  height: 3.5rem;
-  width: 3.5rem;
 }
 
 .white {

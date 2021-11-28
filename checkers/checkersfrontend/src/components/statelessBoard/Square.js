@@ -6,10 +6,46 @@ export const Square = (props) => {
   const isEvenRow = props.row % 2 === 0;
   const isEvenColumn = props.column.charCodeAt() % 2 !== 0;
   const isLight = (isEvenRow && isEvenColumn) || (!isEvenRow && !isEvenColumn);
+  console.log("props: ", props);
 
-  return (
-    <td className={"square-" + (isLight ? "light" : "dark")}>
-      {props.data.color.trim() && <Piece data={props.data} />}
-    </td>
-  );
+  const drop = (e) => {
+    e.preventDefault();
+    const card_id = e.dataTransfer.getData("card_id");
+
+    const card = document.getElementById(card_id);
+    card.style.display = "block";
+
+    e.target.appendChild(card);
+  };
+
+  const dragOver = (e) => {
+    e.preventDefault();
+  };
+
+  if (isLight) {
+    console.log("PieceLight");
+    return <td className="square-light"></td>;
+  }
+
+  if (!isLight) {
+    console.log("PieceDark");
+    return (
+      <td
+        id={props.id}
+        className={props.className}
+        onDrop={drop}
+        onDragOver={dragOver}
+        className="square-dark"
+      >
+        {props.data.color.trim() && (
+          <Piece
+            id={"card-" + props.row + props.column}
+            className="card"
+            draggable="true"
+            data={props.data}
+          />
+        )}
+      </td>
+    );
+  }
 };
