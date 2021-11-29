@@ -161,6 +161,9 @@ export const CheckersBoard = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     let messageContent = data;
+    console.log("1messageContent: ", messageContent);
+
+    //const boardInput
 
     if (messageContent && global.stompClient) {
       const chatMessage = {
@@ -173,7 +176,8 @@ export const CheckersBoard = () => {
         {},
         JSON.stringify(chatMessage)
       );
-      messageContent = data;
+      // messageContent = data;
+      // console.log("2messageContent: ", messageContent);
     }
   };
 
@@ -193,10 +197,11 @@ export const CheckersBoard = () => {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else {
+      console.log("here1");
       messageElement.classList.add("chat-message");
-
+      console.log("here2");
       transferData(message.content);
-
+      console.log("here3");
       const avatarContainer = document.createElement("div");
       avatarContainer.className = "img_cont_msg";
       const avatarElement = document.createElement("div");

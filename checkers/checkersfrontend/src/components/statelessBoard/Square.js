@@ -10,12 +10,19 @@ export const Square = (props) => {
 
   const drop = (e) => {
     e.preventDefault();
+
     const card_id = e.dataTransfer.getData("card_id");
 
+    const board_id = e.dataTransfer.getData("board_id");
+
     const card = document.getElementById(card_id);
+    const board = document.getElementById(board_id);
     card.style.display = "block";
 
     e.target.appendChild(card);
+    console.log("e.target: ", e.target);
+    console.log("board: ", board);
+    console.log("drop: ", card);
   };
 
   const dragOver = (e) => {
