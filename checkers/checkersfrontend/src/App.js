@@ -29,7 +29,7 @@ export const App = () => {
           <Route exact path="/">
             <CheckersBoard />
           </Route>
-          <Route exact path="/Home" component={Home} />
+          <Route exact path="/home" component={Home} />
         </Switch>
       </Router>
     </div>
