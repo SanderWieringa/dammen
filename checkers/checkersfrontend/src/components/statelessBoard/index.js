@@ -5,8 +5,8 @@ import "./styles.scss";
 import { useState } from "react";
 
 export const CheckersBoard = () => {
-  let stompClient;
-  let username;
+  // let stompClient;
+  // let username;
 
   let [data, setData] = useState([
     [
@@ -163,8 +163,6 @@ export const CheckersBoard = () => {
     let messageContent = data;
     console.log("1messageContent: ", messageContent);
 
-    //const boardInput
-
     if (messageContent && global.stompClient) {
       const chatMessage = {
         sender: global.username,
@@ -288,6 +286,8 @@ export const CheckersBoard = () => {
               <tbody>
                 {data.map((rowData, index) => {
                   const number = data.length - index;
+
+                  console.log("row.data: ", rowData);
 
                   return (
                     <Row

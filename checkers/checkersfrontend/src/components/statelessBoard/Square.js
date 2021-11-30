@@ -11,17 +11,14 @@ export const Square = (props) => {
   const drop = (e) => {
     e.preventDefault();
 
-    const card_id = e.dataTransfer.getData("card_id");
-
-    const board_id = e.dataTransfer.getData("board_id");
+    const card_id = e.dataTransfer.getData("piece_id");
 
     const card = document.getElementById(card_id);
-    const board = document.getElementById(board_id);
     card.style.display = "block";
 
     e.target.appendChild(card);
     console.log("e.target: ", e.target);
-    console.log("board: ", board);
+
     console.log("drop: ", card);
   };
 
@@ -30,8 +27,25 @@ export const Square = (props) => {
   };
 
   if (isLight) {
-    console.log("PieceLight");
-    return <td className="square-light"></td>;
+    // console.log("PieceLight");
+    // return <td className="square-light"></td>;
+    return (
+      <td
+        id={props.id}
+        onDrop={drop}
+        onDragOver={dragOver}
+        className="square-light"
+      >
+        {props.data.color.trim() && (
+          <Piece
+            id={"piece-" + props.row + props.column}
+            className="piece"
+            draggable="true"
+            data={props.data}
+          />
+        )}
+      </td>
+    );
   }
 
   if (!isLight) {
@@ -45,8 +59,8 @@ export const Square = (props) => {
       >
         {props.data.color.trim() && (
           <Piece
-            id={"card-" + props.row + props.column}
-            className="card"
+            id={"piece-" + props.row + props.column}
+            className="piece"
             draggable="true"
             data={props.data}
           />
