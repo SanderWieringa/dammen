@@ -7,7 +7,11 @@ export const Home = () => {
     
   const logout = () => {
     localStorage.clear();
-    history.push("/login")
+    history.push("/")
+  }
+
+  const game = () => {
+    history.push("/board")
   }
 
     return (
@@ -15,6 +19,7 @@ export const Home = () => {
         <nav>
           <h2>Welcome</h2> 
           <button onClick = {logout}>Log Out</button>
+          <button onClick = {game}>Board</button>
         </nav>
       </div>
     );

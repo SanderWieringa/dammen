@@ -1,7 +1,9 @@
 import React from "react";
 import "./styles.scss";
+import { useHistory } from "react-router-dom";
 
 export const Signup = ({ userinfo, setUserInfo }) => {
+  let history = useHistory();
   const inputChange = (e) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
@@ -16,8 +18,21 @@ export const Signup = ({ userinfo, setUserInfo }) => {
   const submit = (e) => {
     e.preventDefault();
 
+    if (!userinfo.username.trim()) {
+      alert('Please Enter Name');
+      return;
+    }
+    else if(!userinfo.password.trim()){
+      alert('Please Enter Password');
+      return;
+    }
     fetch("http://localhost:8080/account/register", requestOptions)
       .then(function (response) {
+        console.log(response);
+        if(response.ok == true)
+        {
+          history.push("/");
+        }
         return response.json();
       })
       .catch(function (error) {
@@ -68,6 +83,9 @@ export const Signup = ({ userinfo, setUserInfo }) => {
           Sign up!
         </button>
       </form>
+      <div className="register">
+        Already have an account? <a href="/">Log in!</a>
+      </div>
     </div>
   );
 };

@@ -174,8 +174,7 @@ export const CheckersBoard = () => {
         {},
         JSON.stringify(chatMessage)
       );
-      // messageContent = data;
-      // console.log("2messageContent: ", messageContent);
+      messageContent = data;
     }
   };
 
@@ -195,11 +194,10 @@ export const CheckersBoard = () => {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else {
-      console.log("here1");
       messageElement.classList.add("chat-message");
-      console.log("here2");
+
       transferData(message.content);
-      console.log("here3");
+
       const avatarContainer = document.createElement("div");
       avatarContainer.className = "img_cont_msg";
       const avatarElement = document.createElement("div");
@@ -218,6 +216,7 @@ export const CheckersBoard = () => {
   return (
     <div>
       <div>
+        <a href="/home">Back to home</a>
         <div className="container-fluid h-100">
           <div id="status" className="login"></div>
           <div id="login">
