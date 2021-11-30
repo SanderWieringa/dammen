@@ -31,7 +31,7 @@ export const Signup = ({ userinfo, setUserInfo }) => {
         console.log(response);
         if(response.ok == true)
         {
-          history.push("/login");
+          history.push("/");
         }
         return response.json();
       })
@@ -84,7 +84,7 @@ export const Signup = ({ userinfo, setUserInfo }) => {
         </button>
       </form>
       <div className="register">
-        Already have an account? <a href="/login">Log in!</a>
+        Already have an account? <a href="/">Log in!</a>
       </div>
     </div>
   );

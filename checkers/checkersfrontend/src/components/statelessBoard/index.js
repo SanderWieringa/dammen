@@ -215,7 +215,7 @@ export const CheckersBoard = () => {
   return (
     <div>
       <div>
-      <a href="/login">Log in!</a>
+      <a href="/home">Back to home</a>
         <div className="container-fluid h-100">
           <div id="status" className="login"></div>
           <div id="login">

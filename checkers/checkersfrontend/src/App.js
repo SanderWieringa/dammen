@@ -20,13 +20,13 @@ export const App = () => {
     <div className="container">
       <Router>
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
             <Login userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
           <Route exact path="/register">
             <Signup userinfo={userInfo} setUserInfo={setUserInfo} />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/board">
             <CheckersBoard />
           </Route>
           <Route exact path="/home" component={Home} />
