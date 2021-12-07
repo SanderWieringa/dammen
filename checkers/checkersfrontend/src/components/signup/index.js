@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.scss";
 import { useHistory } from "react-router-dom";
+import auth from "../../util/auth";
 
 export const Signup = ({ userinfo, setUserInfo }) => {
   let history = useHistory();
@@ -19,21 +20,22 @@ export const Signup = ({ userinfo, setUserInfo }) => {
     e.preventDefault();
 
     if (!userinfo.username.trim()) {
-      alert('Please Enter Name');
+      alert("Please Enter Name");
       return;
-    }
-    else if(!userinfo.password.trim()){
-      alert('Please Enter Password');
+    } else if (!userinfo.password.trim()) {
+      alert("Please Enter Password");
       return;
     }
     fetch("http://localhost:8080/account/register", requestOptions)
       .then(function (response) {
-        console.log(response);
-        if(response.ok == true)
-        {
-          history.push("/");
-        }
         return response.json();
+      })
+      .then(function (data) {
+        if (data.success) {
+          auth.register(() => {
+            history.push("/");
+          });
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -57,27 +59,6 @@ export const Signup = ({ userinfo, setUserInfo }) => {
           name="password"
           onChange={(e) => inputChange(e)}
           placeholder="Password"
-        ></input>
-        <input
-          type="password"
-          className="input"
-          name="confPass"
-          onChange={(e) => inputChange(e)}
-          placeholder="Confirm password"
-        ></input>
-        <input
-          type="email"
-          className="input"
-          name="email"
-          onChange={(e) => inputChange(e)}
-          placeholder="Enter your email"
-        ></input>
-        <input
-          type="email"
-          className="input"
-          name="confEmail"
-          onChange={(e) => inputChange(e)}
-          placeholder="confirm your email"
         ></input>
         <button className="button" type="submit">
           Sign up!
