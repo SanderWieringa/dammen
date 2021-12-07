@@ -38,6 +38,8 @@ export const Login = ({ userinfo, setUserInfo }) => {
           auth.login(() => {
             history.push("/home");
           });
+        } else {
+          alert("Incorrect Credentials");
         }
       })
       .catch(function (error) {
