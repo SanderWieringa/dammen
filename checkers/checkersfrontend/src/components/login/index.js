@@ -12,6 +12,14 @@ export const Login = ({ userinfo, setUserInfo }) => {
   const submit = (e) => {
     e.preventDefault();
 
+    if (!userinfo.username.trim()) {
+      alert("Please Enter Name");
+      return;
+    } else if (!userinfo.password.trim()) {
+      alert("Please Enter Password");
+      return;
+    }
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,7 +40,9 @@ export const Login = ({ userinfo, setUserInfo }) => {
           });
         }
       })
-      .catch(function (error) {});
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -56,7 +66,6 @@ export const Login = ({ userinfo, setUserInfo }) => {
         <button className="button" type="submit">
           Sign in
         </button>
-        <p className="p">Lost your password?</p>
       </form>
       <div className="register">
         Don't have an account? <a href="/register">Sign up!</a>

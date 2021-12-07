@@ -9,13 +9,6 @@ export const Signup = ({ userinfo, setUserInfo }) => {
     setUserInfo({ ...userinfo, [e.target.name]: e.target.value });
   };
 
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    mode: "cors",
-    body: JSON.stringify(userinfo),
-  };
-
   const submit = (e) => {
     e.preventDefault();
 
@@ -26,6 +19,14 @@ export const Signup = ({ userinfo, setUserInfo }) => {
       alert("Please Enter Password");
       return;
     }
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
+      body: JSON.stringify(userinfo),
+    };
+
     fetch("http://localhost:8080/account/register", requestOptions)
       .then(function (response) {
         return response.json();
