@@ -4,6 +4,8 @@ import checkers.logic.UserLogic;
 import checkers.model.User;
 import checkers.response.AuthenticationRequest;
 import checkers.response.AuthenticationResponse;
+import checkers.response.LoginResponse;
+import checkers.response.RegisterResponse;
 import checkers.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,21 +27,30 @@ public class UserController {
     private JwtUtil jwtTokenUtil;
 
     @PostMapping(value = "/register")
-    public ResponseEntity<AuthenticationResponse> addUser(@RequestBody User user) {
+    public ResponseEntity<RegisterResponse> addUser(@RequestBody User user) {
         try {
             userLogic.addUser(user);
-            return new ResponseEntity(HttpStatus.OK);
+            RegisterResponse registerResponse = new RegisterResponse();
+            registerResponse.setSuccess(true);
+
+            return ResponseEntity.ok(registerResponse);
         }  catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Something went wrong"
-            );
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping(value="/authenticate")
-    public ResponseEntity<AuthenticationResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<LoginResponse> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) {
         try {
             userLogic.login(authenticationRequest);
+            org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) userLogic.loadUserByUsername(authenticationRequest.getUsername());
+
+            final String jwt = jwtTokenUtil.generateToken(user);
+
+            LoginResponse loginResponse = new LoginResponse(jwt);
+            loginResponse.setSuccess(true);
+
+            return ResponseEntity.ok(loginResponse);
         } catch (AccessDeniedException e) {
             throw new ResponseStatusException(
                     HttpStatus.FORBIDDEN, "Incorrect credentials"
@@ -49,11 +60,5 @@ public class UserController {
                     HttpStatus.BAD_REQUEST, "Something went wrong"
             );
         }
-
-        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) userLogic.loadUserByUsername(authenticationRequest.getUsername());
-
-        final String jwt = jwtTokenUtil.generateToken(user);
-        System.out.println(jwt);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 }

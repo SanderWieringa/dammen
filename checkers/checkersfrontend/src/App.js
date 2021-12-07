@@ -12,9 +12,6 @@ export const App = () => {
   const [userInfo, setUserInfo] = useState({
     username: "",
     password: "",
-    confPass: "",
-    email: "",
-    confEmail: "",
   });
   return (
     <div className="container">
