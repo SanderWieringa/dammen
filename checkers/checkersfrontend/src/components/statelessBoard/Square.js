@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Piece } from "./Piece";
 import "./styles.scss";
 
@@ -20,6 +20,8 @@ export const Square = (props) => {
     console.log("e.target: ", e.target);
 
     console.log("drop: ", card);
+    console.log("piece id: ", card.id);
+    console.log("square id: ", e.target.id);
   };
 
   const dragOver = (e) => {

@@ -11,7 +11,7 @@ export const Row = (props) => {
         const column = String.fromCharCode(97 + index);
         return (
           <Square
-            id={"square-" + index}
+            id={"square-" + props.number + String.fromCharCode(97 + index)}
             key={column + props.number}
             row={props.number}
             column={column}
