@@ -2,6 +2,8 @@ package checkers.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.lang.reflect.Array;
+
 public class Board {
     private checkers.model.User user1;
     private checkers.model.User user2;
@@ -35,7 +37,65 @@ public class Board {
         }
     }
 
-    public Piece[][] getBoard() {
-        return board;
+    public String[] Algoritme(String cord)
+    {
+        String[] results = new String[1];
+        //int squareCord = Cord.convert
+        String squareCord = "11";
+
+        int half = squareCord.length() % 2 == 0 ? squareCord.length()/2 : squareCord.length()/2 + 1;
+        int row = Integer.parseInt(squareCord.substring(0, half)) - 1;
+        int column = Integer.parseInt(squareCord.substring(half)) - 1;
+
+        Piece chosen = board[row][column];
+
+        if(chosen.getColor() == Color.BLACK)
+        {
+            if(chosen.getIsKing())
+            {
+
+            }
+            else
+            {
+                if(column == 0)
+                {
+                    if(board[row+1][column+1].getColor() == Color.EMPTY)
+                    {
+                        results[0] = (String.valueOf(row + 1) + (column + 1));
+                        return results;
+                    }
+                }
+                else if(column == 7)
+                {
+                    if(board[row+1][column-1].getColor() == Color.EMPTY)
+                    {
+                        results[0] = (String.valueOf(row + 1) + (column - 1));
+                        return results;
+                    }
+                }
+                else
+                {
+                    if(board[row+1][column+1].getColor() == Color.EMPTY || board[row+1][column-1].getColor() == Color.EMPTY)
+                    {
+
+                    }
+                }
+            }
+
+        }
+        else if (chosen.getColor() == Color.WHITE)
+        {
+            if(chosen.getIsKing())
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+        else {}
+
+        return results;
     }
 }

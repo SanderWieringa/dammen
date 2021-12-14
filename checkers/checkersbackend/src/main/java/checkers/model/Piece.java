@@ -21,4 +21,12 @@ public class Piece {
         this.isKing = isKing;
         this.color = color;
     }
+
+    public boolean getIsKing() {
+        return isKing;
+    }
+
+    public Color getColor() {
+        return color;
+    }
 }
