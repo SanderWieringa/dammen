@@ -195,7 +195,7 @@ export const CheckersBoard = () => {
       message.content = message.sender + " left!";
     } else {
       messageElement.classList.add("chat-message");
-
+      transferData();
       transferData(message.content);
 
       const avatarContainer = document.createElement("div");
@@ -284,6 +284,7 @@ export const CheckersBoard = () => {
               </thead>
               <tbody>
                 {data.map((rowData, index) => {
+                  console.log("data: ", data);
                   const number = data.length - index;
 
                   console.log("row.data: ", rowData);
