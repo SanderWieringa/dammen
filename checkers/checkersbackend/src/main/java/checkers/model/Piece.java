@@ -12,13 +12,21 @@ public class Piece {
     @Setter
     @Getter
     private Color color;
+    @Setter
+    @Getter
+    private int row;
+    @Setter
+    @Getter
+    private String column;
 
     public Piece() {
 
     }
 
-    public Piece(boolean isKing, Color color) {
+    public Piece(boolean isKing, Color color, int row, String column) {
         this.isKing = isKing;
         this.color = color;
+        this.row = row;
+        this.column = column;
     }
 }

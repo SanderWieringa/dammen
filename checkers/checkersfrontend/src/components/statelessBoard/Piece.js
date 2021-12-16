@@ -7,7 +7,16 @@ export const Piece = (props) => {
   const dragStart = (e) => {
     const target = e.target;
 
+    console.log("target: ", target);
+
     e.dataTransfer.setData("piece_id", target.id);
+
+    const card_id = e.dataTransfer.getData("piece_id");
+
+    const card = document.getElementById(card_id);
+
+    console.log("card: ", card);
+    console.log("props: ", props);
 
     setTimeout(() => {
       target.style.display = "none";
