@@ -3,7 +3,11 @@ import blackMan from "../../black-man.svg";
 import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
-export const Piece = (props) => {
+export const Piece = (props, { setCoordinates }) => {
+  const handleClick = (e) => {
+    setCoordinates();
+  };
+
   const dragStart = (e) => {
     const target = e.target;
 
@@ -17,6 +21,7 @@ export const Piece = (props) => {
 
     console.log("card: ", card);
     console.log("props: ", props);
+    console.log("props.data.column: ", props.data.column);
 
     setTimeout(() => {
       target.style.display = "none";
@@ -36,6 +41,9 @@ export const Piece = (props) => {
         onDragOver={dragOver}
         src={whiteMan}
         alt={``}
+        onClick={(e) => {
+          handleClick(e);
+        }}
       />
     );
   }
@@ -49,6 +57,9 @@ export const Piece = (props) => {
         src={blackMan}
         alt={``}
         className={"piece"}
+        onClick={(e) => {
+          handleClick(e);
+        }}
       ></img>
     );
   } else {
