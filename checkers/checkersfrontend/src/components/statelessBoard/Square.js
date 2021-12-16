@@ -7,7 +7,7 @@ export const Square = (props) => {
   const isEvenColumn = props.column.charCodeAt() % 2 !== 0;
   const isLight = (isEvenRow && isEvenColumn) || (!isEvenRow && !isEvenColumn);
   console.log("props: ", props);
-  const [coor, setCoordinates] = useState({ column: "a", row: 1 });
+  const [coor, setCoordinates] = useState();
 
   const drop = (e) => {
     e.preventDefault();
@@ -46,6 +46,7 @@ export const Square = (props) => {
             className="piece"
             draggable="true"
             data={props.data}
+            coor={coor}
             setCoordinates={setCoordinates}
           />
         )}
@@ -68,6 +69,7 @@ export const Square = (props) => {
             className="piece"
             draggable="true"
             data={props.data}
+            coor={coor}
             setCoordinates={setCoordinates}
           />
         )}

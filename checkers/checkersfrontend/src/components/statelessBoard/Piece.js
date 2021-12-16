@@ -3,9 +3,9 @@ import blackMan from "../../black-man.svg";
 import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
-export const Piece = (props, { setCoordinates }) => {
-  const handleClick = (e) => {
-    setCoordinates();
+export const Piece = (props, { coor, setCoordinates }) => {
+  const handleClick = () => {
+    setCoordinates(coor);
   };
 
   const dragStart = (e) => {
@@ -41,8 +41,8 @@ export const Piece = (props, { setCoordinates }) => {
         onDragOver={dragOver}
         src={whiteMan}
         alt={``}
-        onClick={(e) => {
-          handleClick(e);
+        onClick={() => {
+          handleClick();
         }}
       />
     );
@@ -57,8 +57,8 @@ export const Piece = (props, { setCoordinates }) => {
         src={blackMan}
         alt={``}
         className={"piece"}
-        onClick={(e) => {
-          handleClick(e);
+        onClick={() => {
+          handleClick();
         }}
       ></img>
     );
