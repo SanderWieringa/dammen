@@ -4,29 +4,20 @@ import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
 export const Piece = (props) => {
-  const dragStart = (e) => {
-    const target = e.target;
-
-    e.dataTransfer.setData("piece_id", target.id);
-
-    setTimeout(() => {
-      target.style.display = "none";
-    }, 0);
-  };
-
-  const dragOver = (e) => {
-    e.stopPropagation();
+  const handleClick = () => {
+    props.setCoordinates(props.id);
   };
 
   if (props.data.color === "WHITE") {
     return (
       <img
         id={props.id}
-        draggable={props.draggable}
-        onDragStart={dragStart}
-        onDragOver={dragOver}
+        className="piece"
         src={whiteMan}
         alt={``}
+        onClick={() => {
+          handleClick();
+        }}
       />
     );
   }
@@ -34,12 +25,12 @@ export const Piece = (props) => {
     return (
       <img
         id={props.id}
-        draggable={props.draggable}
-        onDragStart={dragStart}
-        onDragOver={dragOver}
+        className="piece"
         src={blackMan}
         alt={``}
-        className={"piece"}
+        onClick={() => {
+          handleClick();
+        }}
       ></img>
     );
   } else {

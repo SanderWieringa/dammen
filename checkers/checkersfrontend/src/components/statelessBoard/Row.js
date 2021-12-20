@@ -16,6 +16,8 @@ export const Row = (props) => {
             row={props.number}
             column={column}
             data={squareData}
+            coor={props.coor}
+            setCoordinates={props.setCoordinates}
           />
         );
       })}
