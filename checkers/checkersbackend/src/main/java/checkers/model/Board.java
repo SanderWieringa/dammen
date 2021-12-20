@@ -164,7 +164,7 @@ public class Board {
 
         Piece chosen = board[row][column];
 
-        if (chosen.getColor() == Color.BLACK)
+        if (chosen.getColor() == Color.WHITE)
         {
             if (chosen.getIsKing())
             {
@@ -177,7 +177,7 @@ public class Board {
                     if (board[row + 1][column + 1].getColor() != Color.EMPTY && row != 6 || board[row + 1][column - 1].getColor() != Color.EMPTY && row != 6) //check aanliggende stenen
                     {
                         results[0] = "slaan";
-                        if (board[row + 1][column + 1].getColor() == Color.WHITE && board[row + 1][column - 1].getColor() == Color.WHITE) //slaan
+                        if (board[row + 1][column + 1].getColor() == Color.BLACK && board[row + 1][column - 1].getColor() == Color.BLACK) //slaan
                             {
                                 if(column == 1)
                                 {
@@ -221,7 +221,7 @@ public class Board {
                                     }
                                 }
                             }
-                            else if (board[row + 1][column - 1].getColor() == Color.WHITE && column != 1)
+                            else if (board[row + 1][column - 1].getColor() == Color.BLACK && column != 1)
                             {
                                 if(board[row + 2][column - 2].getColor() == Color.EMPTY)
                                 {
@@ -230,7 +230,7 @@ public class Board {
                                     return results;
                                 }
                             }
-                            else if (board[row + 1][column + 1].getColor() == Color.WHITE && column != 6)
+                            else if (board[row + 1][column + 1].getColor() == Color.BLACK && column != 6)
                             {
                                 if(board[row + 2][column + 2].getColor() == Color.EMPTY)
                                 {
@@ -316,7 +316,7 @@ public class Board {
                 }
             }
 
-        } else if (chosen.getColor() == Color.WHITE)
+        } else if (chosen.getColor() == Color.BLACK)
         {
             if (chosen.getIsKing())
             {
@@ -329,7 +329,7 @@ public class Board {
                     if (board[row - 1][column + 1].getColor() != Color.EMPTY && row != 1 || board[row - 1][column - 1].getColor() != Color.EMPTY && row != 1) //check aanliggende stenen
                     {
                         results[0] = "slaan";
-                        if (board[row - 1][column + 1].getColor() == Color.BLACK && board[row - 1][column - 1].getColor() == Color.BLACK) //slaan
+                        if (board[row - 1][column + 1].getColor() == Color.WHITE && board[row - 1][column - 1].getColor() == Color.WHITE) //slaan
                         {
                             if(column == 1)
                             {
@@ -373,7 +373,7 @@ public class Board {
                                 }
                             }
                         }
-                        else if (board[row - 1][column - 1].getColor() == Color.BLACK && column != 1)
+                        else if (board[row - 1][column - 1].getColor() == Color.WHITE && column != 1)
                         {
                             if(board[row - 2][column - 2].getColor() == Color.EMPTY)
                             {
