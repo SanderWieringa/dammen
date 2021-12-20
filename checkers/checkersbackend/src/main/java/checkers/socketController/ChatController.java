@@ -17,6 +17,11 @@ public class ChatController {
     @MessageMapping("/checkers.send")
     @SendTo("/topic/public")
     public CheckersMessage sendMessage(@Payload final ChatMessage chatMessage) {
+        Board board = new Board();
+        String number = board.convertToNumbers(chatMessage.getContent());
+        System.out.println("number: " + number);
+        String[] array = board.Algoritme(number);
+        System.out.println(array[0]);
         System.out.println(chatMessage.getContent());
         return null;
     }

@@ -8,8 +8,6 @@ import lombok.Setter;
 public class Board {
     private checkers.model.User user1;
     private checkers.model.User user2;
-    int row = 8;
-    int column = 8;
     @Setter
     @Getter
     private Piece[][] board = new Piece[8][8]; // <-- char, not int
@@ -24,13 +22,24 @@ public class Board {
         letters.add("f");
         letters.add("g");
         letters.add("h");
+    }
+
+    public String convertToNumbers(String oldCoor) {
+        fillList();
+        int half = oldCoor.length() % 2 == 0 ? oldCoor.length() / 2 : oldCoor.length() / 2 + 1;
+        int row = Integer.parseInt(oldCoor.substring(0, half));
+        String numberCoor = oldCoor.substring(half);
+        String number = String.valueOf(letters.indexOf(numberCoor) + 1);
+        return row + number;
+    }
+
+    public void convertToLetters() {
 
     }
 
     public Board() {
         this.user1 = user1;
         this.user2 = user2;
-        fillList();
 
         board[0][0] = new Piece(false, Color.EMPTY);
         board[0][1] = new Piece(false, Color.BLACK);
@@ -74,6 +83,7 @@ public class Board {
         board[4][3] = new Piece(false, Color.EMPTY);
         board[4][4] = new Piece(false, Color.EMPTY);
         board[4][5] = new Piece(false, Color.EMPTY);
+        board[4][6] = new Piece(false, Color.EMPTY);
         board[4][7] = new Piece(false, Color.EMPTY);
 
         board[5][0] = new Piece(false, Color.WHITE);
