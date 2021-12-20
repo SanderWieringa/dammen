@@ -40,6 +40,43 @@ public class Board {
         }
     }
 
+    public void ChangeBoard(String[] cordCalculated, String cord)
+    {
+        int half = cord.length() % 2 == 0 ? cord.length() / 2 : cord.length() / 2 + 1;
+        int row = Integer.parseInt(cord.substring(0, half)) - 1;
+        int column = Integer.parseInt(cord.substring(half)) - 1;
+
+        Piece moved = board[row][column];
+        board[row][column] = new Piece(false, Color.EMPTY);
+
+        if(cordCalculated[0].equals("lopen"))
+        {
+            half = cordCalculated[1].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
+            row = Integer.parseInt(cordCalculated[1].substring(0, half)) - 1;
+            column = Integer.parseInt(cordCalculated[1].substring(half)) - 1;
+
+            board[row][column] = moved;
+            return;
+        }
+        else if(cordCalculated[0].equals("slaan"))
+        {
+            half = cordCalculated[1].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
+            row = Integer.parseInt(cordCalculated[1].substring(0, half)) - 1;
+            column = Integer.parseInt(cordCalculated[1].substring(half)) - 1;
+
+            board[row][column] = moved;
+
+            half = cordCalculated[2].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
+            row = Integer.parseInt(cordCalculated[2].substring(0, half)) - 1;
+            column = Integer.parseInt(cordCalculated[2].substring(half)) - 1;
+
+            board[row][column] = new Piece(false, Color.EMPTY);
+            return;
+        }
+
+        board[row][column] = moved;
+    }
+
     public String[] Algoritme(String cord)
     {
         String[] results = new String[10];
