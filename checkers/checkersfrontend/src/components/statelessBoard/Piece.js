@@ -3,42 +3,16 @@ import blackMan from "../../black-man.svg";
 import whiteMan from "../../white-man.svg";
 import "./styles.scss";
 
-export const Piece = (props, { coor, setCoordinates }) => {
+export const Piece = (props) => {
   const handleClick = () => {
-    setCoordinates(coor);
-  };
-
-  const dragStart = (e) => {
-    const target = e.target;
-
-    console.log("target: ", target);
-
-    e.dataTransfer.setData("piece_id", target.id);
-
-    const card_id = e.dataTransfer.getData("piece_id");
-
-    const card = document.getElementById(card_id);
-
-    console.log("card: ", card);
-    console.log("props: ", props);
-    console.log("props.data.column: ", props.data.column);
-
-    setTimeout(() => {
-      target.style.display = "none";
-    }, 0);
-  };
-
-  const dragOver = (e) => {
-    e.stopPropagation();
+    props.setCoordinates(props.id);
   };
 
   if (props.data.color === "WHITE") {
     return (
       <img
         id={props.id}
-        draggable={props.draggable}
-        onDragStart={dragStart}
-        onDragOver={dragOver}
+        className="piece"
         src={whiteMan}
         alt={``}
         onClick={() => {
@@ -51,12 +25,9 @@ export const Piece = (props, { coor, setCoordinates }) => {
     return (
       <img
         id={props.id}
-        draggable={props.draggable}
-        onDragStart={dragStart}
-        onDragOver={dragOver}
+        className="piece"
         src={blackMan}
         alt={``}
-        className={"piece"}
         onClick={() => {
           handleClick();
         }}

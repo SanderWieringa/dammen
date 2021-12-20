@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class ChatController {
     @MessageMapping("/checkers.send")
     @SendTo("/topic/public")
-    public CheckersMessage sendMessage(@Payload final CheckersMessage checkersMessage) {
-        return checkersMessage;
+    public CheckersMessage sendMessage(@Payload final ChatMessage chatMessage) {
+        System.out.println(chatMessage.getContent());
+        return null;
     }
 
     @MessageMapping("/checkers.newUser")

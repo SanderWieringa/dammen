@@ -5,8 +5,7 @@ import "./styles.scss";
 import { useState } from "react";
 
 export const CheckersBoard = () => {
-  // let stompClient;
-  // let username;
+  const [coor, setCoordinates] = useState({});
 
   let [data, setData] = useState([
     [
@@ -160,21 +159,20 @@ export const CheckersBoard = () => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-    let messageContent = data;
-    console.log("1messageContent: ", messageContent);
+    console.log("coor: ", coor);
 
-    if (messageContent && global.stompClient) {
+    if (coor && global.stompClient) {
       const chatMessage = {
         sender: global.username,
-        content: { board: messageContent },
+        content: coor,
         type: "CHAT",
       };
+      console.log("chatMessage: ", chatMessage);
       global.stompClient.send(
         "/app/checkers.send",
         {},
         JSON.stringify(chatMessage)
       );
-      messageContent = data;
     }
   };
 
@@ -286,13 +284,13 @@ export const CheckersBoard = () => {
                 {data.map((rowData, index) => {
                   const number = data.length - index;
 
-                  console.log("row.data: ", rowData);
-
                   return (
                     <Row
                       key={number.toString()}
                       number={number}
                       data={rowData}
+                      coor={coor}
+                      setCoordinates={setCoordinates}
                     />
                   );
                 })}
