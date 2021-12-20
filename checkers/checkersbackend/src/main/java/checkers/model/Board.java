@@ -108,30 +108,6 @@ public class Board {
             }
             System.out.println();
         }
-
-//        for (int r = 0; r < board.length; r++) { // <-- iterate up to 8, not 7
-//            for (int c = 0; c < board[r].length; c++) {
-//                if (r < 3 || r >= 5) {
-//
-//                    if ((r + c) % 2 == 1) { // <-- include column in parity check
-//                        if (r < 3) {
-//                            board[r][c] = new Piece(false, Color.BLACK);
-//                        }
-//                        if (r >= 5) {
-//                            board[r][c] = new Piece(false, Color.WHITE);
-//                        }
-//
-//                    }
-//                    else {
-//                        board[r][c] = new Piece(false, Color.EMPTY);
-//                    }
-//                } else {
-//                    board[r][c] = new Piece(false, Color.EMPTY);
-//
-//                }
-//                System.out.println(board[r][c].getColor());
-//            }
-//        }
     }
 
     public Piece[][] getBoard() {
