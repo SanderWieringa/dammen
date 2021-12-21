@@ -30,7 +30,45 @@ public class Board {
         int row = Integer.parseInt(oldCoor.substring(0, half));
         String numberCoor = oldCoor.substring(half);
         String number = String.valueOf(letters.indexOf(numberCoor) + 1);
+        row = rowConvert(row);
         return row + number;
+    }
+
+    public int rowConvert(int row)
+    {
+        if(row == 1)
+        {
+            row = 8;
+        }
+        else if(row == 2)
+        {
+            row = 7;
+        }
+        else if(row == 3)
+        {
+            row = 6;
+        }
+        else if(row == 4)
+        {
+            row = 5;
+        }
+        else if(row == 5)
+        {
+            row = 4;
+        }
+        else if(row == 6)
+        {
+            row = 3;
+        }
+        else if(row == 7)
+        {
+            row = 2;
+        }
+        else if(row == 8)
+        {
+            row = 1;
+        }
+        return row;
     }
 
     public void convertToLetters() {
@@ -159,7 +197,7 @@ public class Board {
         int row = Integer.parseInt(cord.substring(0, half)) - 1;
         int column = Integer.parseInt(cord.substring(half)) - 1;
 
-        int frontendRow = row + 1;
+        int frontendRow = rowConvert(row) + 1;
         int frontendColumn = column + 1;
 
         Piece chosen = board[row][column];
@@ -457,9 +495,7 @@ public class Board {
         }
 
 
-        results[0] = "lopen";
-        results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
-        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+        results[0] = "niet valide";
         return results;
     }
 }
