@@ -177,8 +177,12 @@ export const CheckersBoard = () => {
   };
 
   const highLightValidMoves = (content) => {
-    document.getElementsByClassName("square-dark").style.backgroundColor =
-      "#5d432c";
+    var squares = document.getElementsByClassName("square-dark");
+    var len = squares.length;
+
+    for (var i = 0; i < len; i++) {
+      squares[i].style.backgroundColor = "#5d432c";
+    }
     for (let i = 1; i < content.length; i++) {
       document.getElementById(content[i]).style.backgroundColor = "#32a836";
     }
