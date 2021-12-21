@@ -459,7 +459,7 @@ public class Board {
 
         results[0] = "lopen";
         results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
-        results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
         return results;
     }
 }
