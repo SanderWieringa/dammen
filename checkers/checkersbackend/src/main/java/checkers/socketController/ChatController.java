@@ -22,6 +22,8 @@ public class ChatController {
         System.out.println("number: " + number);
         String[] array = board.Algoritme(number);
         System.out.println(array[0]);
+        System.out.println(array[1]);
+        System.out.println(array[2]);
         return null;
     }
 
