@@ -6,6 +6,7 @@ export const Square = (props) => {
   const isEvenRow = props.row % 2 === 0;
   const isEvenColumn = props.column.charCodeAt() % 2 !== 0;
   const isLight = (isEvenRow && isEvenColumn) || (!isEvenRow && !isEvenColumn);
+  console.log("props.id: ", props.id);
 
   if (isLight) {
     return (

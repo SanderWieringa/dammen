@@ -176,7 +176,16 @@ export const CheckersBoard = () => {
     }
   };
 
-  const highLightValidMoves = () => {};
+  const highLightValidMoves = (content) => {
+    for (let i = 1; i < content.length; i++) {
+      const validSquare = document.getElementById(content[i]);
+
+      console.log("validSquare: ", validSquare);
+    }
+
+    // const squareTwo = document.getElementById;
+    // console.log("content: ", content);
+  };
 
   const messageControls = document.createElement("message-controls");
   messageControls.addEventListener("submit", sendMessage, true);
@@ -194,6 +203,7 @@ export const CheckersBoard = () => {
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else if (message.type === "VALIDMOVE") {
+      console.log("message.content: ", message.content);
       highLightValidMoves(message.content);
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";

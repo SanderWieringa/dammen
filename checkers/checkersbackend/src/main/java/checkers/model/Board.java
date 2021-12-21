@@ -73,9 +73,16 @@ public class Board {
 
     public String[] convertToLetters(String[] coordinates) {
         int counter = 0;
-        for (int i = 0; i < coordinates.length; i ++)
-            if (coordinates[i] != null)
+
+        for (int i = 0; i < coordinates.length; i ++) {
+            if (coordinates[i] != null) {
                 counter ++;
+            }
+        }
+
+        String[] newArray = new String[counter];
+
+        newArray[0] = coordinates[0];
 
         for (int i = 1; i < counter; i++) {
             int half = coordinates[i].length() % 2 == 0 ? coordinates[i].length() / 2 : coordinates[i].length() / 2 + 1;
@@ -83,10 +90,10 @@ public class Board {
 
             int numberCoor = Integer.parseInt(coordinates[i].substring(half));
             String number = String.valueOf(letters.get(numberCoor - 1));
-            coordinates[i] = row + number;
-            System.out.println(coordinates[i]);
+            newArray[i] = row + number;
+            System.out.println(newArray[i]);
         }
-        return coordinates;
+        return newArray;
     }
 
     public Board() {
