@@ -176,6 +176,25 @@ export const CheckersBoard = () => {
     }
   };
 
+  const sendMove = (event) => {
+    event.preventDefault();
+    console.log("coor: ", coor);
+
+    if (coor && global.stompClient) {
+      const chatMessage = {
+        sender: global.username,
+        content: coor,
+        type: "CHAT",
+      };
+      console.log("chatMessage: ", chatMessage);
+      global.stompClient.send(
+        "/app/checkers.sendMove",
+        {},
+        JSON.stringify(chatMessage)
+      );
+    }
+  };
+
   const highLightValidMoves = (content) => {
     var squares = document.getElementsByClassName("square-dark");
     var len = squares.length;
@@ -274,6 +293,20 @@ export const CheckersBoard = () => {
                   <div className="input-group-append">
                     <button className="fas fa-location-arrow" type="submit">
                       Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <form
+                id="message-controls"
+                name="message-controls"
+                className="card-footer"
+                onSubmit={(e) => sendMove(e)}
+              >
+                <div className="input-group">
+                  <div className="input-group-append">
+                    <button className="fas fa-location-arrow" type="submit">
+                      Send Move
                     </button>
                   </div>
                 </div>

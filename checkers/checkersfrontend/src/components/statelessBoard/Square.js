@@ -8,6 +8,11 @@ export const Square = (props) => {
   const isLight = (isEvenRow && isEvenColumn) || (!isEvenRow && !isEvenColumn);
   console.log("props.id: ", props.id);
 
+  const handleClick = () => {
+    props.setCoordinates(props.id);
+    console.log(props.id);
+  };
+
   if (isLight) {
     return (
       <td id={props.id} className="square-light">
@@ -26,7 +31,13 @@ export const Square = (props) => {
 
   if (!isLight) {
     return (
-      <td id={props.id} className="square-dark">
+      <td
+        id={props.id}
+        className="square-dark"
+        onClick={() => {
+          handleClick();
+        }}
+      >
         {props.data.color.trim() && (
           <Piece
             id={props.row + props.column}

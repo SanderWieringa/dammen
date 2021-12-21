@@ -175,6 +175,10 @@ public class Board {
 
     public void ChangeBoard(String[] cordCalculated, String cord)
     {
+        for (int i = 0; i < cordCalculated.length; i++) {
+            System.out.println("cordCalculated: " + cordCalculated[i]);
+        }
+        System.out.println("cord: " + cord);
         int half = cord.length() % 2 == 0 ? cord.length() / 2 : cord.length() / 2 + 1;
         int row = Integer.parseInt(cord.substring(0, half)) - 1;
         int column = Integer.parseInt(cord.substring(half)) - 1;

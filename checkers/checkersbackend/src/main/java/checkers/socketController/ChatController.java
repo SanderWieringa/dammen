@@ -12,18 +12,35 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class ChatController {
+    String[] cordCalculated = new String[0];
     @MessageMapping("/checkers.send")
     @SendTo("/topic/public")
     public ValidMessage sendMessage(@Payload final ChatMessage chatMessage) {
         Board board = new Board();
         String number = board.convertToNumbers(chatMessage.getContent());
         System.out.println("number: " + number);
-        String[] validCoordinates = board.convertToLetters(board.Algoritme(number));
+        cordCalculated = board.convertToLetters(board.Algoritme(number));
         ValidMessage validMessage = new ValidMessage();
         validMessage.setSender(chatMessage.getSender());
         validMessage.setType((MessageType.VALIDMOVE));
-        validMessage.setContent(validCoordinates);
+        validMessage.setContent(cordCalculated);
         return validMessage;
+    }
+
+    @MessageMapping("/checkers.sendMove")
+    @SendTo("/topic/public")
+    public ValidMessage sendMove(@Payload final ChatMessage chatMessage) {
+        System.out.println(chatMessage.getContent());
+        Board board = new Board();
+        System.out.println("content: " + chatMessage.getContent());
+        String number = board.convertToNumbers(chatMessage.getContent());
+        System.out.println("number: " + number);
+        for (int i = 1; i < cordCalculated.length; i++) {
+            String newNumber = board.convertToNumbers(cordCalculated[i]);
+            cordCalculated[i] = newNumber;
+        }
+        board.ChangeBoard(cordCalculated, number);
+        return null;
     }
 
     @MessageMapping("/checkers.newUser")
