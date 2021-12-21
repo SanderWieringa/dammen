@@ -71,8 +71,22 @@ public class Board {
         return row;
     }
 
-    public void convertToLetters() {
+    public String[] convertToLetters(String[] coordinates) {
+        int counter = 0;
+        for (int i = 0; i < coordinates.length; i ++)
+            if (coordinates[i] != null)
+                counter ++;
 
+        for (int i = 1; i < counter; i++) {
+            int half = coordinates[i].length() % 2 == 0 ? coordinates[i].length() / 2 : coordinates[i].length() / 2 + 1;
+            int row = Integer.parseInt(coordinates[i].substring(0, half));
+
+            int numberCoor = Integer.parseInt(coordinates[i].substring(half));
+            String number = String.valueOf(letters.get(numberCoor - 1));
+            coordinates[i] = row + number;
+            System.out.println(coordinates[i]);
+        }
+        return coordinates;
     }
 
     public Board() {

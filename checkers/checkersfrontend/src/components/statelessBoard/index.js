@@ -176,6 +176,8 @@ export const CheckersBoard = () => {
     }
   };
 
+  const highLightValidMoves = () => {};
+
   const messageControls = document.createElement("message-controls");
   messageControls.addEventListener("submit", sendMessage, true);
 
@@ -189,6 +191,10 @@ export const CheckersBoard = () => {
       messageElement.classList.add("event-message");
       transferData(message.content);
     } else if (message.type === "DISCONNECT") {
+      messageElement.classList.add("event-message");
+      message.content = message.sender + " left!";
+    } else if (message.type === "VALIDMOVE") {
+      highLightValidMoves(message.content);
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
     } else {

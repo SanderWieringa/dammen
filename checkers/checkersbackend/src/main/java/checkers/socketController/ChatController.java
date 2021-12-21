@@ -1,9 +1,7 @@
 package checkers.socketController;
 
 import checkers.model.Board;
-import checkers.socketModel.ChatMessage;
-import checkers.socketModel.CheckersMessage;
-import checkers.socketModel.LobbyMessage;
+import checkers.socketModel.*;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -16,15 +14,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class ChatController {
     @MessageMapping("/checkers.send")
     @SendTo("/topic/public")
-    public CheckersMessage sendMessage(@Payload final ChatMessage chatMessage) {
+    public ValidMessage sendMessage(@Payload final ChatMessage chatMessage) {
         Board board = new Board();
         String number = board.convertToNumbers(chatMessage.getContent());
         System.out.println("number: " + number);
-        String[] array = board.Algoritme(number);
-        System.out.println(array[0]);
-        System.out.println(array[1]);
-        System.out.println(array[2]);
-        return null;
+        String[] validCoordinates = board.convertToLetters(board.Algoritme(number));
+        ValidMessage validMessage = new ValidMessage();
+        validMessage.setSender(chatMessage.getSender());
+        validMessage.setType((MessageType.VALIDMOVE));
+        validMessage.setContent(validCoordinates);
+        return validMessage;
     }
 
     @MessageMapping("/checkers.newUser")
