@@ -202,7 +202,7 @@ public class Board {
 
         Piece chosen = board[row][column];
 
-        if (chosen.getColor() == Color.WHITE)
+        if (chosen.getColor() == Color.BLACK)
         {
             if (chosen.getIsKing())
             {
@@ -215,78 +215,78 @@ public class Board {
                     if (board[row + 1][column + 1].getColor() != Color.EMPTY && row != 6 || board[row + 1][column - 1].getColor() != Color.EMPTY && row != 6) //check aanliggende stenen
                     {
                         results[0] = "slaan";
-                        if (board[row + 1][column + 1].getColor() == Color.BLACK && board[row + 1][column - 1].getColor() == Color.BLACK) //slaan
-                            {
-                                if(column == 1)
-                                {
-                                    if(board[row + 2][column + 2].getColor() == Color.EMPTY)
-                                    {
-                                        results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
-                                        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
-                                        return results;
-                                    }
-                                }
-                                else if(column == 6)
-                                {
-                                    if(board[row + 2][column - 2].getColor() == Color.EMPTY)
-                                    {
-                                        results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
-                                        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
-                                        return results;
-                                    }
-                                }
-                                else
-                                {
-                                    if(board[row + 2][column + 2].getColor() == Color.EMPTY && board[row + 2][column - 2].getColor() != Color.EMPTY)
-                                    {
-                                        results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
-                                        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
-                                        return results;
-                                    }
-                                    else if(board[row + 2][column - 2].getColor() == Color.EMPTY && board[row + 2][column + 2].getColor() != Color.EMPTY)
-                                    {
-                                        results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
-                                        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
-                                        return results;
-                                    }
-                                    else if(board[row + 2][column + 2].getColor() == Color.EMPTY && board[row + 2][column - 2].getColor() == Color.EMPTY)
-                                    {
-                                        results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
-                                        results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
-                                        results[3] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
-                                        results[4] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
-                                        return results;
-                                    }
-                                }
-                            }
-                            else if (board[row + 1][column - 1].getColor() == Color.BLACK && column != 1)
-                            {
-                                if(board[row + 2][column - 2].getColor() == Color.EMPTY)
-                                {
-                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
-                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
-                                    return results;
-                                }
-                            }
-                            else if (board[row + 1][column + 1].getColor() == Color.BLACK && column != 6)
+                        if (board[row + 1][column + 1].getColor() == Color.WHITE && board[row + 1][column - 1].getColor() == Color.WHITE) //slaan
+                        {
+                            if(column == 1)
                             {
                                 if(board[row + 2][column + 2].getColor() == Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
-                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
                                     return results;
                                 }
                             }
-                            else if(board[row + 1][column + 1].getColor() == Color.EMPTY || board[row + 1][column - 1].getColor() == Color.EMPTY)
+                            else if(column == 6)
+                            {
+                                if(board[row + 2][column - 2].getColor() == Color.EMPTY)
+                                {
+                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
+                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    return results;
+                                }
+                            }
+                            else
+                            {
+                                if(board[row + 2][column + 2].getColor() == Color.EMPTY && board[row + 2][column - 2].getColor() != Color.EMPTY)
+                                {
+                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                    return results;
+                                }
+                                else if(board[row + 2][column - 2].getColor() == Color.EMPTY && board[row + 2][column + 2].getColor() != Color.EMPTY)
+                                {
+                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
+                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    return results;
+                                }
+                                else if(board[row + 2][column + 2].getColor() == Color.EMPTY && board[row + 2][column - 2].getColor() == Color.EMPTY)
+                                {
+                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                    results[3] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
+                                    results[4] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    return results;
+                                }
+                            }
+                        }
+                        else if (board[row + 1][column - 1].getColor() == Color.WHITE && column != 1)
+                        {
+                            if(board[row + 2][column - 2].getColor() == Color.EMPTY)
+                            {
+                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
+                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                return results;
+                            }
+                        }
+                        else if (board[row + 1][column + 1].getColor() == Color.WHITE && column != 6)
+                        {
+                            if(board[row + 2][column + 2].getColor() == Color.EMPTY)
+                            {
+                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
+                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                return results;
+                            }
+                        }
+                        else if(board[row + 1][column + 1].getColor() == Color.EMPTY || board[row + 1][column - 1].getColor() == Color.EMPTY)
                         {
                             results[0] = "lopen";
                             if(board[row + 1][column + 1].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
                             }
                             if(board[row + 1][column - 1].getColor() == Color.EMPTY)
                             {
-                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
                             }
                             return results;
                         }
@@ -296,11 +296,11 @@ public class Board {
                         results[0] = "lopen";
                         if(board[row + 1][column - 1].getColor() == Color.EMPTY)
                         {
-                            results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+                            results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
                         }
                         if(board[row + 1][column + 1].getColor() == Color.EMPTY)
                         {
-                            results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                            results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
                         }
                         return results;
                     }
@@ -314,8 +314,8 @@ public class Board {
                             results[0] = "slaan";
                             if(board[row + 2][column + 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
-                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
+                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
                                 return results;
                             }
                         }
@@ -324,7 +324,7 @@ public class Board {
                             results[0] = "lopen";
                             if(board[row + 1][column + 1].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
                                 return results;
                             }
                         }
@@ -336,8 +336,8 @@ public class Board {
                             results[0] = "slaan";
                             if(board[row + 2][column - 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
-                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
+                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
                                 return results;
                             }
                         }
@@ -346,7 +346,7 @@ public class Board {
                             results[0] = "lopen";
                             if(board[row + 1][column - 1].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
+                                results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
                                 return results;
                             }
                         }
@@ -354,7 +354,7 @@ public class Board {
                 }
             }
 
-        } else if (chosen.getColor() == Color.BLACK)
+        } else if (chosen.getColor() == Color.WHITE)
         {
             if (chosen.getIsKing())
             {
@@ -367,14 +367,14 @@ public class Board {
                     if (board[row - 1][column + 1].getColor() != Color.EMPTY && row != 1 || board[row - 1][column - 1].getColor() != Color.EMPTY && row != 1) //check aanliggende stenen
                     {
                         results[0] = "slaan";
-                        if (board[row - 1][column + 1].getColor() == Color.WHITE && board[row - 1][column - 1].getColor() == Color.WHITE) //slaan
+                        if (board[row - 1][column + 1].getColor() == Color.BLACK && board[row - 1][column - 1].getColor() == Color.BLACK) //slaan
                         {
                             if(column == 1)
                             {
                                 if(board[row - 2][column + 2].getColor() == Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
-                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                                     return results;
                                 }
                             }
@@ -382,8 +382,8 @@ public class Board {
                             {
                                 if(board[row - 2][column - 2].getColor() == Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
-                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
+                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                     return results;
                                 }
                             }
@@ -391,41 +391,41 @@ public class Board {
                             {
                                 if(board[row - 2][column + 2].getColor() == Color.EMPTY && board[row - 2][column - 2].getColor() != Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
-                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                                     return results;
                                 }
                                 else if(board[row - 2][column - 2].getColor() == Color.EMPTY && board[row - 2][column + 2].getColor() != Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
-                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
+                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                     return results;
                                 }
                                 else if(board[row - 2][column + 2].getColor() == Color.EMPTY && board[row - 2][column - 2].getColor() == Color.EMPTY)
                                 {
-                                    results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
-                                    results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
-                                    results[3] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
-                                    results[4] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                    results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
+                                    results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                                    results[3] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
+                                    results[4] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                     return results;
                                 }
                             }
                         }
-                        else if (board[row - 1][column - 1].getColor() == Color.WHITE && column != 1)
+                        else if (board[row - 1][column - 1].getColor() == Color.BLACK && column != 1)
                         {
                             if(board[row - 2][column - 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
-                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
+                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                 return results;
                             }
                         }
-                        else if (board[row - 1][column + 1].getColor() == Color.WHITE && column != 6)
+                        else if (board[row - 1][column + 1].getColor() == Color.BLACK && column != 6)
                         {
                             if(board[row - 2][column + 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
-                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
+                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                                 return results;
                             }
                         }
@@ -435,11 +435,11 @@ public class Board {
                         results[0] = "lopen";
                         if(board[row - 1][column - 1].getColor() == Color.EMPTY)
                         {
-                            results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                            results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                         }
                         if(board[row - 1][column + 1].getColor() == Color.EMPTY)
                         {
-                            results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                            results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                         }
                         return results;
                     }
@@ -453,8 +453,8 @@ public class Board {
                             results[0] = "slaan";
                             if(board[row - 2][column + 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn + 2));
-                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn + 2));
+                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                                 return results;
                             }
                         }
@@ -463,7 +463,7 @@ public class Board {
                             results[0] = "lopen";
                             if(board[row - 1][column + 1].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                                results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
                                 return results;
                             }
                         }
@@ -475,8 +475,8 @@ public class Board {
                             results[0] = "slaan";
                             if(board[row - 2][column - 2].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 2) + (frontendColumn - 2));
-                                results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                results[1] = (String.valueOf(frontendRow + 2) + (frontendColumn - 2));
+                                results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                 return results;
                             }
                         }
@@ -485,7 +485,7 @@ public class Board {
                             results[0] = "lopen";
                             if(board[row - 1][column - 1].getColor() == Color.EMPTY)
                             {
-                                results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
+                                results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                                 return results;
                             }
                         }
