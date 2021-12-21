@@ -177,14 +177,11 @@ export const CheckersBoard = () => {
   };
 
   const highLightValidMoves = (content) => {
+    document.getElementsByClassName("square-dark").style.backgroundColor =
+      "#5d432c";
     for (let i = 1; i < content.length; i++) {
-      const validSquare = document.getElementById(content[i]);
-
-      console.log("validSquare: ", validSquare);
+      document.getElementById(content[i]).style.backgroundColor = "#32a836";
     }
-
-    // const squareTwo = document.getElementById;
-    // console.log("content: ", content);
   };
 
   const messageControls = document.createElement("message-controls");
@@ -204,6 +201,7 @@ export const CheckersBoard = () => {
       message.content = message.sender + " left!";
     } else if (message.type === "VALIDMOVE") {
       console.log("message.content: ", message.content);
+
       highLightValidMoves(message.content);
       messageElement.classList.add("event-message");
       message.content = message.sender + " left!";
