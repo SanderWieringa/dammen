@@ -40,6 +40,9 @@ public class ChatController {
             cordCalculated[i] = newNumber;
         }
         board.ChangeBoard(cordCalculated, number);
+        BoardMessage boardMessage = new BoardMessage();
+        boardMessage.setSender(chatMessage.getSender());
+        boardMessage.setType((MessageType.VALIDMOVE));
         return null;
     }
 
