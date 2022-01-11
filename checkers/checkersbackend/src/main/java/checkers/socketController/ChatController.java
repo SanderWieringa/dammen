@@ -29,21 +29,27 @@ public class ChatController {
 
     @MessageMapping("/checkers.sendMove")
     @SendTo("/topic/public")
-    public ValidMessage sendMove(@Payload final OriginMessage originMessage) {
+    public BoardMessage sendMove(@Payload final OriginMessage originMessage) {
         System.out.println(originMessage.getContent());
         Board board = new Board();
         System.out.println("content: " + originMessage.getContent());
-        String number = board.convertToNumbers(originMessage.getContent().getCordCalculated());
-        System.out.println("number: " + number);
-        for (int i = 1; i < cordCalculated.length; i++) {
-            String newNumber = board.convertToNumbers(cordCalculated[i]);
-            cordCalculated[i] = newNumber;
-        }
-        board.ChangeBoard(cordCalculated, number, originMessage.getContent().getCoor());
+        System.out.println("origin: " + originMessage.getContent().getOriginCoor());
+        System.out.println("coor: " + originMessage.getContent().getCoor());
+        String origin = board.convertToNumbers(originMessage.getContent().getOriginCoor());
+        String coor = board.convertToNumbers(originMessage.getContent().getCoor());
+        //System.out.println("number: " + number);
+//        for (int i = 1; i < cordCalculated.length; i++) {
+//            String newNumber = board.convertToNumbers(cordCalculated[i]);
+//            cordCalculated[i] = newNumber;
+//        }
+        Board boardObj = board.ChangeBoard(coor, origin, originMessage.getContent().getCordCalculated());
         BoardMessage boardMessage = new BoardMessage();
+//        boardMessage.setContent(board.getBoardObject());
+        boardMessage.setContent(boardObj);
         boardMessage.setSender(originMessage.getSender());
-        boardMessage.setType((MessageType.VALIDMOVE));
-        return null;
+        boardMessage.setType((MessageType.BOARDMOVE));
+        System.out.println("here");
+        return boardMessage;
     }
 
     @MessageMapping("/checkers.newUser")

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +15,10 @@ public class Board {
     @Getter
     private Piece[][] board = new Piece[8][8]; // <-- char, not int
     List<String> letters = new ArrayList<>();
+
+//    public Board getBoardObject() {
+//        return this;
+//    }
 
     public void fillList() {
         letters.add("a");
@@ -175,7 +180,7 @@ public class Board {
         board[7][7] = new Piece(false, Color.EMPTY);
     }
 
-    public void ChangeBoard(String coor, String coorOrigin, String actie)
+    public Board ChangeBoard(String coor, String coorOrigin, String actie)
     {
         int half = coorOrigin.length() % 2 == 0 ? coorOrigin.length() / 2 : coorOrigin.length() / 2 + 1;
         int row = Integer.parseInt(coorOrigin.substring(0, half)) - 1;
@@ -191,7 +196,7 @@ public class Board {
             column = Integer.parseInt(coor.substring(half)) - 1;
 
             board[row][column] = moved;
-            return;
+            return this;
         }
         /*else if(Objects.equals(actie, "slaan"))
         {
@@ -210,6 +215,7 @@ public class Board {
         }*/
 
         board[row][column] = moved;
+        return this;
     }
 
     public String[] Algoritme(String cord)

@@ -4,6 +4,7 @@ public enum MessageType {
     CHAT,
     CONNECT,
     DISCONNECT,
-    VALIDMOVE
+    VALIDMOVE,
+    BOARDMOVE
 }
 

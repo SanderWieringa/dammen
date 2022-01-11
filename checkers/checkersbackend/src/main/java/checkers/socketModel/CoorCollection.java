@@ -9,7 +9,7 @@ public class CoorCollection {
     String coor;
     @Setter
     @Getter
-    String origin;
+    String originCoor;
     @Setter
     @Getter
     String cordCalculated;

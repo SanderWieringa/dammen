@@ -234,8 +234,9 @@ export const CheckersBoard = () => {
       console.log("cordCalculated: ", cordCalculated);
 
       highLightValidMoves(message.content);
-      messageElement.classList.add("event-message");
-      message.content = message.sender + " left!";
+    } else if (message.type === "BOARDMOVE") {
+      console.log("message.content: ", message.content);
+      transferData(message.content);
     } else {
       messageElement.classList.add("chat-message");
 
