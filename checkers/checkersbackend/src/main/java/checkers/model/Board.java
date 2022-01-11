@@ -200,21 +200,27 @@ public class Board {
         }
         else if(Objects.equals(actie, "slaan"))
         {
+            int rowpiece = row;
+            int columnpiece = column;
+
+            if(moved.getColor().equals(Color.WHITE))
+            {
+                rowpiece--;
+            }
+            else if(moved.getColor().equals(Color.BLACK))
+            {
+                rowpiece++;
+            }
+
             if(Integer.parseInt(coorOrigin) > Integer.parseInt(coor))
             {
-                int rowpiece = row;
-                int columnpiece = column--;
-                if(moved.getColor().equals(Color.WHITE))
-                {
-                    rowpiece++;
-                }
-                else if(moved.getColor().equals(Color.BLACK))
-                {
-                    rowpiece--;
-                }
-
-                board[rowpiece][columnpiece] = new  Piece(false, Color.EMPTY);
+                columnpiece--;
             }
+            else{
+                columnpiece++;
+            }
+
+            board[rowpiece][columnpiece] = new  Piece(false, Color.EMPTY);
 
             half = coor.length() % 2 == 0 ? coor.length() / 2 : coor.length() / 2 + 1;
             row = Integer.parseInt(coor.substring(0, half)) - 1;
