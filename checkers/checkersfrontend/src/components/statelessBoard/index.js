@@ -201,14 +201,17 @@ export const CheckersBoard = () => {
   };
 
   const highLightValidMoves = (content) => {
+    for (let i = 1; i < content.length; i++) {
+      document.getElementById(content[i]).style.backgroundColor = "#32a836";
+    }
+  };
+
+  const deHighLight = () => {
     var squares = document.getElementsByClassName("square-dark");
     var len = squares.length;
 
     for (var i = 0; i < len; i++) {
       squares[i].style.backgroundColor = "#5d432c";
-    }
-    for (let i = 1; i < content.length; i++) {
-      document.getElementById(content[i]).style.backgroundColor = "#32a836";
     }
   };
 
@@ -232,10 +235,11 @@ export const CheckersBoard = () => {
       let cordCalculated = message.content[0];
       localStorage.setItem("cordCalculated", cordCalculated);
       console.log("cordCalculated: ", cordCalculated);
-
+      deHighLight();
       highLightValidMoves(message.content);
     } else if (message.type === "BOARDMOVE") {
       console.log("message.content: ", message.content);
+      deHighLight();
       transferData(message.content);
     } else {
       messageElement.classList.add("chat-message");
