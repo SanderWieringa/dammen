@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class ChatController {
+    Board board = new Board();
     String[] cordCalculated = new String[0];
     @MessageMapping("/checkers.send")
     @SendTo("/topic/public")
     public ValidMessage sendMessage(@Payload final ChatMessage chatMessage) {
-        Board board = new Board();
         String number = board.convertToNumbers(chatMessage.getContent());
         System.out.println("number: " + number);
         cordCalculated = board.convertToLetters(board.Algoritme(number));
@@ -31,7 +31,6 @@ public class ChatController {
     @SendTo("/topic/public")
     public BoardMessage sendMove(@Payload final OriginMessage originMessage) {
         System.out.println(originMessage.getContent());
-        Board board = new Board();
         System.out.println("content: " + originMessage.getContent());
         System.out.println("origin: " + originMessage.getContent().getOriginCoor());
         System.out.println("coor: " + originMessage.getContent().getCoor());
@@ -56,7 +55,7 @@ public class ChatController {
     @SendTo("/topic/public")
     public CheckersMessage newUser(@Payload final CheckersMessage checkersMessage, SimpMessageHeaderAccessor headerAccessor) {
         headerAccessor.getSessionAttributes().put("username", checkersMessage.getSender());
-        checkersMessage.setContent(new Board());
+        checkersMessage.setContent(board);
         return checkersMessage;
     }
 }
