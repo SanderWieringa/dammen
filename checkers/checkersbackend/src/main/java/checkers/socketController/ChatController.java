@@ -29,19 +29,19 @@ public class ChatController {
 
     @MessageMapping("/checkers.sendMove")
     @SendTo("/topic/public")
-    public ValidMessage sendMove(@Payload final ChatMessage chatMessage) {
-        System.out.println(chatMessage.getContent());
+    public ValidMessage sendMove(@Payload final OriginMessage originMessage) {
+        System.out.println(originMessage.getContent());
         Board board = new Board();
-        System.out.println("content: " + chatMessage.getContent());
-        String number = board.convertToNumbers(chatMessage.getContent());
+        System.out.println("content: " + originMessage.getContent());
+        String number = board.convertToNumbers(originMessage.getContent().getCordCalculated());
         System.out.println("number: " + number);
         for (int i = 1; i < cordCalculated.length; i++) {
             String newNumber = board.convertToNumbers(cordCalculated[i]);
             cordCalculated[i] = newNumber;
         }
-        board.ChangeBoard(cordCalculated, number);
+        board.ChangeBoard(cordCalculated, number, originMessage.getContent().getCoor());
         BoardMessage boardMessage = new BoardMessage();
-        boardMessage.setSender(chatMessage.getSender());
+        boardMessage.setSender(originMessage.getSender());
         boardMessage.setType((MessageType.VALIDMOVE));
         return null;
     }

@@ -160,6 +160,7 @@ export const CheckersBoard = () => {
   const sendMessage = (event) => {
     event.preventDefault();
     console.log("coor: ", coor);
+    localStorage.setItem("originCoor", coor);
 
     if (coor && global.stompClient) {
       const chatMessage = {
@@ -179,18 +180,22 @@ export const CheckersBoard = () => {
   const sendMove = (event) => {
     event.preventDefault();
     console.log("coor: ", coor);
+    let originCoor = localStorage.getItem("originCoor");
+    let cordCalculated = localStorage.getItem("cordCalculated");
+    console.log("originCoor: ", originCoor);
+    console.log("cordCalculated: ", cordCalculated);
 
     if (coor && global.stompClient) {
-      const chatMessage = {
+      const originMessage = {
         sender: global.username,
-        content: coor,
+        content: { coor, originCoor, cordCalculated },
         type: "CHAT",
       };
-      console.log("chatMessage: ", chatMessage);
+      console.log("originMessage: ", originMessage);
       global.stompClient.send(
         "/app/checkers.sendMove",
         {},
-        JSON.stringify(chatMessage)
+        JSON.stringify(originMessage)
       );
     }
   };
@@ -224,6 +229,9 @@ export const CheckersBoard = () => {
       message.content = message.sender + " left!";
     } else if (message.type === "VALIDMOVE") {
       console.log("message.content: ", message.content);
+      let cordCalculated = message.content[0];
+      localStorage.setItem("cordCalculated", cordCalculated);
+      console.log("cordCalculated: ", cordCalculated);
 
       highLightValidMoves(message.content);
       messageElement.classList.add("event-message");
