@@ -198,21 +198,32 @@ public class Board {
             board[row][column] = moved;
             return this;
         }
-        /*else if(Objects.equals(actie, "slaan"))
+        else if(Objects.equals(actie, "slaan"))
         {
-            half = cordCalculated[1].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
-            row = Integer.parseInt(cordCalculated[1].substring(0, half)) - 1;
-            column = Integer.parseInt(cordCalculated[1].substring(half)) - 1;
+            if(Integer.parseInt(coorOrigin) > Integer.parseInt(coor))
+            {
+                int rowpiece = row;
+                int columnpiece = column--;
+                if(moved.getColor().equals(Color.WHITE))
+                {
+                    rowpiece++;
+                }
+                else if(moved.getColor().equals(Color.BLACK))
+                {
+                    rowpiece--;
+                }
+
+                board[rowpiece][columnpiece] = new  Piece(false, Color.EMPTY);
+            }
+
+            half = coor.length() % 2 == 0 ? coor.length() / 2 : coor.length() / 2 + 1;
+            row = Integer.parseInt(coor.substring(0, half)) - 1;
+            column = Integer.parseInt(coor.substring(half)) - 1;
 
             board[row][column] = moved;
 
-            half = cordCalculated[2].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
-            row = Integer.parseInt(cordCalculated[2].substring(0, half)) - 1;
-            column = Integer.parseInt(cordCalculated[2].substring(half)) - 1;
-
-            board[row][column] = new Piece(false, Color.EMPTY);
-            return;
-        }*/
+            return this;
+        }
 
         board[row][column] = moved;
         return this;
