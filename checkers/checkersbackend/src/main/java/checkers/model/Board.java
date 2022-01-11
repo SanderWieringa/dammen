@@ -2,6 +2,8 @@ package checkers.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -173,29 +175,25 @@ public class Board {
         board[7][7] = new Piece(false, Color.EMPTY);
     }
 
-    public void ChangeBoard(String[] cordCalculated, String cord)
+    public void ChangeBoard(String coor, String coorOrigin, String actie)
     {
-        for (int i = 0; i < cordCalculated.length; i++) {
-            System.out.println("cordCalculated: " + cordCalculated[i]);
-        }
-        System.out.println("cord: " + cord);
-        int half = cord.length() % 2 == 0 ? cord.length() / 2 : cord.length() / 2 + 1;
-        int row = Integer.parseInt(cord.substring(0, half)) - 1;
-        int column = Integer.parseInt(cord.substring(half)) - 1;
+        int half = coorOrigin.length() % 2 == 0 ? coorOrigin.length() / 2 : coorOrigin.length() / 2 + 1;
+        int row = Integer.parseInt(coorOrigin.substring(0, half)) - 1;
+        int column = Integer.parseInt(coorOrigin.substring(half)) - 1;
 
         Piece moved = board[row][column];
         board[row][column] = new Piece(false, Color.EMPTY);
 
-        if(cordCalculated[0].equals("lopen"))
+        if(Objects.equals(actie, "lopen"))
         {
-            half = cordCalculated[1].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
-            row = Integer.parseInt(cordCalculated[1].substring(0, half)) - 1;
-            column = Integer.parseInt(cordCalculated[1].substring(half)) - 1;
+            half = coor.length() % 2 == 0 ? coor.length() / 2 : coor.length() / 2 + 1;
+            row = Integer.parseInt(coor.substring(0, half)) - 1;
+            column = Integer.parseInt(coor.substring(half)) - 1;
 
             board[row][column] = moved;
             return;
         }
-        else if(cordCalculated[0].equals("slaan"))
+        /*else if(Objects.equals(actie, "slaan"))
         {
             half = cordCalculated[1].length() % 2 == 0 ? cordCalculated[1].length() / 2 : cordCalculated[1].length() / 2 + 1;
             row = Integer.parseInt(cordCalculated[1].substring(0, half)) - 1;
@@ -209,7 +207,7 @@ public class Board {
 
             board[row][column] = new Piece(false, Color.EMPTY);
             return;
-        }
+        }*/
 
         board[row][column] = moved;
     }
