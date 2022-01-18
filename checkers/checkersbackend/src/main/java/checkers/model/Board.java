@@ -203,27 +203,31 @@ public class Board {
         }
         else if(Objects.equals(actie, "slaan"))
         {
-            int rowpiece = row;
-            int columnpiece = column;
+            half = coor.length() % 2 == 0 ? coor.length() / 2 : coor.length() / 2 + 1;
+            int rowpiece = Integer.parseInt(coor.substring(0, half)) - 1;
+            int columnpiece = Integer.parseInt(coor.substring(half)) - 1;
+
+            int rowCoor = row;
+            int columnCoor = column;
 
             if(moved.getColor().equals(Color.WHITE))
             {
-                rowpiece--;
+                rowCoor--;
             }
             else if(moved.getColor().equals(Color.BLACK))
             {
-                rowpiece++;
+                rowCoor++;
             }
 
-            if(Integer.parseInt(coorOrigin) > Integer.parseInt(coor))
+            if(column > columnpiece)
             {
-                columnpiece--;
+                columnCoor--;
             }
             else{
-                columnpiece++;
+                columnCoor++;
             }
 
-            board[rowpiece][columnpiece] = new  Piece(false, Color.EMPTY);
+            board[rowCoor][columnCoor] = new  Piece(false, Color.EMPTY);
 
             half = coor.length() % 2 == 0 ? coor.length() / 2 : coor.length() / 2 + 1;
             row = Integer.parseInt(coor.substring(0, half)) - 1;
