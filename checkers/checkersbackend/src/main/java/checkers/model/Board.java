@@ -186,6 +186,9 @@ public class Board {
         int row = Integer.parseInt(coorOrigin.substring(0, half)) - 1;
         int column = Integer.parseInt(coorOrigin.substring(half)) - 1;
 
+        int frontendRow = rowConvert(row + 1);
+        int frontendColumn = column + 1;
+
         Piece moved = board[row][column];
         board[row][column] = new Piece(false, Color.EMPTY);
 
@@ -258,7 +261,7 @@ public class Board {
             {
                 if (column != 0 && column != 7) //check zijkant
                 {
-                    if (board[row + 1][column + 1].getColor() != Color.EMPTY && row != 6 || board[row + 1][column - 1].getColor() != Color.EMPTY && row != 6) //check aanliggende stenen
+                    if (board[row + 1][column + 1].getColor() == Color.WHITE && row != 6 || board[row + 1][column - 1].getColor() == Color.WHITE && row != 6) //check aanliggende stenen
                     {
                         results[0] = "slaan";
                         if (board[row + 1][column + 1].getColor() == Color.WHITE && board[row + 1][column - 1].getColor() == Color.WHITE) //slaan
@@ -340,13 +343,18 @@ public class Board {
                     else  //lopen
                     {
                         results[0] = "lopen";
-                        if(board[row + 1][column - 1].getColor() == Color.EMPTY)
+                        if(board[row + 1][column - 1].getColor() == Color.EMPTY && board[row + 1][column + 1].getColor() == Color.EMPTY)
                         {
                             results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
-                        }
-                        if(board[row + 1][column + 1].getColor() == Color.EMPTY)
-                        {
                             results[2] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                        }
+                        else if(board[row + 1][column + 1].getColor() == Color.EMPTY)
+                        {
+                            results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn + 1));
+                        }
+                        else if(board[row + 1][column - 1].getColor() == Color.EMPTY)
+                        {
+                            results[1] = (String.valueOf(frontendRow - 1) + (frontendColumn - 1));
                         }
                         return results;
                     }
@@ -410,7 +418,7 @@ public class Board {
             {
                 if (column != 0 && column != 7) //check zijkant
                 {
-                    if (board[row - 1][column + 1].getColor() != Color.EMPTY && row != 1 || board[row - 1][column - 1].getColor() != Color.EMPTY && row != 1) //check aanliggende stenen
+                    if (board[row - 1][column + 1].getColor() == Color.BLACK && row != 1 || board[row - 1][column - 1].getColor() == Color.BLACK && row != 1) //check aanliggende stenen
                     {
                         results[0] = "slaan";
                         if (board[row - 1][column + 1].getColor() == Color.BLACK && board[row - 1][column - 1].getColor() == Color.BLACK) //slaan
@@ -479,13 +487,18 @@ public class Board {
                     else  //lopen
                     {
                         results[0] = "lopen";
-                        if(board[row - 1][column - 1].getColor() == Color.EMPTY)
+                        if(board[row - 1][column - 1].getColor() == Color.EMPTY && board[row - 1][column + 1].getColor() == Color.EMPTY)
                         {
                             results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
-                        }
-                        if(board[row - 1][column + 1].getColor() == Color.EMPTY)
-                        {
                             results[2] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                        }
+                        else if(board[row - 1][column + 1].getColor() == Color.EMPTY)
+                        {
+                            results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn + 1));
+                        }
+                        else if(board[row - 1][column - 1].getColor() == Color.EMPTY)
+                        {
+                            results[1] = (String.valueOf(frontendRow + 1) + (frontendColumn - 1));
                         }
                         return results;
                     }
